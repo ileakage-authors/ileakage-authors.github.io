@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN9P1066KJ"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-NN9P1066KJ');
+		</script>
+
+		<script>
+			function copy_to_clipboard() {
+				/* Get the text field */
+				var copyText = document.getElementById("citeTextarea");
+
+				/* Select the text field */
+				copyText.select();
+				copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+				/* Copy the text inside the text field */
+				document.execCommand("copy");
+
+				/* Alert the copied text */
+				/*alert("Copied the text: " + copyText.value);*/
+			}
+		</script>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap and Font-Awesome -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+			crossorigin="anonymous"></script>
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"
+			rel="stylesheet">
+
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+		<link href="css/theme.css" rel="stylesheet">
+		<title>iLeakage</title>
+	</head>
+
+	<body>
+		<div class="jumbotron">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-sm-1"></div>
+					<div class="col-sm-10">
+						<h1 class="description text-center">iLeakage. <span style="color: #4d4d4d;">Browser-based Speculative Execution Attacks on Apple Devices.</span></h2>
+					</div>
+					<div class="col-sm-1"></div>
+				</div>
+				<div style="background-color: black; height: 5px; margin-top: 30px;"></div>
+			</div>
+		</div>
+
+		<div class="container">
+			<section id="abstract">
+				<h4><i class="fa fa-chrome" style="padding-right: 10px;"></i>What is it?</h4>
+
+				<div class="container">
+					<p>
+
+						Spook.js is a new transient execution side channel attack which targets the Chrome web browser.
+						We show that despite Google's attempts to mitigate <a
+							href="https://spectreattack.com/">Spectre</a> by deploying <a
+							href="https://www.chromium.org/Home/chromium-security/site-isolation">Strict Site
+							Isolation</a>, information extraction via malicious JavaScript code is still possible in
+						some cases.
+					</p>
+					<p>
+						More specifically, we show that an attacker-controlled webpage can know which other pages from
+						the same websites a
+						user is currently browsing, retrieve sensitive information from these pages, and even recover
+						login credentials (e.g., username and password) when they are autofilled. We further demonstrate
+						that the attacker
+						can retrieve data from Chrome extensions (such as credential managers)
+						if a user installs a malicous extension.
+					</p>
+
+					<div class="row" style="padding-top: 10px; text-align: center;">
+						<div class="col-xs-12 button-wrapper">
+							<a href="files/spook-js.pdf" target="_blank" class="btn btn-primary mr-2" style="margin-right: 10px;"><i
+									class="fa fa-download" style="padding-right: 10px;"></i>Download the Paper (PDF)</a>
+							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#cite-spookjs"><i
+									class="fa fa-quote-left" style="padding-right: 10px;"></i> Cite (BibTeX)</a>
+						</div>
+					</div>
+
+					<div class="modal fade" id="cite-spookjs" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLongTitle">Cite Spook.js</h5>
+								</div>
+
+								<div class="modal-body">
+									<textarea class="form-control rounded-0" id="citeTextarea" rows="8" readonly>
+
+@inproceedings{spookjs,
+	title = {Spook.js: Attacking Chrome Strict Site Isolation via Speculative Execution},
+	author = {Ayush Agarwal and Sioli O'Connell and Jason Kim and Shaked Yehezkel and Daniel Genkin and Eyal Ronen and Yuval Yarom},
+	booktitle = {43rd IEEE Symposium on Security and Privacy (S\&P'22)},
+	year = {2022},
+}
+		
+										</textarea>
+								</div>
+
+								<div class="modal-footer">
+									<a href="javascript:copy_to_clipboard()" class="btn btn-primary mr-auto"><i
+											class="fa fa-clipboard" style="margin-right: 10px;" aria-hidden="true"></i>
+										Copy to Clipboard</a>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="demos">
+				<h4><i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i>What can Spook.js do?</h4>
+
+				<div class="container">
+					<h5 class="green">Attacking Tumblr with Chrome's Built-in Credential Manager</h5>
+					<p>
+						We deployed Spook.js on a Tumblr blog, targeting a password that was autofilled into Tumblr's
+						login page by Chrome's built-in credential manager. We show that our blog can be rendered by the
+						same Chrome process as the login page, and that Spook.js can consequently recover the password.
+					</p>
+					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bP9Hquj5PH4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+					<h5 class="green" style="margin-top: 20px;">Attacking LastPass with a Malicious Chrome Extension</h5>
+
+					<p>
+						This time, we packaged Spook.js as a Chrome extension. We show that under certain conditions,
+					   	multiple extensions may be consolidated and executed from the same process. We take advantage
+					   	of this behavior to read the memory of the LastPass credential manager extension, and recover
+						the master password of the target's vault.
+					</p>
+					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yz_s4k1zGwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</section>
+
+			<section id="people">
+				<h4 style="padding-top: 20px;"><i class="fa fa-users" style="padding-right: 10px;"></i>Who are the people behind Spook.js?</h4>
+				<div class="container">
+					<ul>
+                        <li><a href="https://www.linkedin.com/in/agarwalayush9">Ayush Agarwal</a> <span class="badge badge-michigan"><a class="univ"
+									href="https://umich.edu/">University of Michigan</a></span></li>
+						<li>Sioli O'Connell <span class="badge badge-adelaide"><a class="univ"
+									href="https://www.adelaide.edu.au/">University of Adelaide</a></span></li>
+						<li><a href="https://jasonkim.page/">Jason Kim </a><span class="badge badge-gatech"><a class="univ"
+									href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
+						<li>Shaked Yehezkel <span class="badge badge-tau"><a class="univ"
+									href="https://english.tau.ac.il/">Tel Aviv University</a></span></li>
+						<li><a href="https://www.cc.gatech.edu/~genkin/">Daniel Genkin</a> <span class="badge badge-gatech"><a class="univ"
+									href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
+						<li><a href="https://eyalro.net/">Eyal Ronen</a> <span class="badge badge-tau"><a class="univ"
+									href="https://english.tau.ac.il/">Tel Aviv University</a></span></li>
+						<li><a href="https://cs.adelaide.edu.au/~yval">Yuval Yarom</a> <span class="badge badge-adelaide"><a class="univ"
+									href="https://www.adelaide.edu.au/">University of Adelaide</a></span></li>
+					</ul>
+					<p style="text-align: center;"><b>Contact us at <a href="mailto:info@spookjs.com">info@spookjs.com</a></b></p>
+					<br>
+
+					<div class="row align-items-center" style="margin-top: -20px; margin-bottom: -20px;">
+						<div class="col-sm-1"></div>
+						<div class="col-sm-3" style="text-align: center;">
+							<img class="img-fluid" src="img/gatech.png" alt="Georgia Institute of Technology"
+								style="padding: 10px; max-height: 100px;" />
+						</div>
+						<div class="col-sm-2" style="text-align: center;">
+							<img class="img-fluid" src="img/adelaide.svg" alt="University of Adelaide"
+								style="padding: 10px; max-height: 100px;" />
+						</div>
+						<div class="col-sm-2" style="text-align: center;">
+							<img class="img-fluid" src="img/umich.png" alt="University of Michigan"
+								style="padding: 10px; max-height: 80px;" />
+						</div>
+						<div class="col-sm-3" style="text-align: center;">
+							<img class="img-fluid" src="img/tau.png" alt="Tel Aviv University"
+								style="padding: 10px; max-height: 100px;" />
+						</div>
+						<div class="col-sm-1"></div>
+					</div>
+				</div>
+			</section>
+
+			<section id="qa">
+				<h4 style="padding-top: 20px;"><i class="fa fa-question-circle" style="padding-right: 10px;"></i>More Questions and Answers</h4>
+
+				<div class="container">
+					<h5 class="green">Impact and Potential Concerns</h5>
+				</div>
+				<div class="accordion accordion-flush" id="impact-and-potential-concerns" style="padding-top: 10px;">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingAffected">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseAffected" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseAffected">
+								Have I been affected by this attack?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseAffected" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingAffected">
+							<div class="accordion-body">
+								If you have an Intel processor or an Apple device with the M1 chip, then yes with very
+								high probability. We also expect our attack to be effective for AMD machines, however
+								this has been only partially demonstrated.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingImpact">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseImpact" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseImpact">
+								What is the impact of this attack?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseImpact" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingImpact">
+							<div class="accordion-body">
+								Under certain conditions, malicious JavaScript code running in one Chrome browser tab can read the
+								contents being displayed on another Chrome tab, which might contain sensitive information
+								such as passwords, bank details, etc. Furthermore, malicious extensions might be able to
+								read the contents of other extensions, including sensitive information stored
+								inside them (e.g., passwords inside credential managers).
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingLeaked">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseLeaked" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseLeaked">
+								What other information can be leaked?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseLeaked" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingLeaked">
+							<div class="accordion-body">
+								Anything stored in the memory of a website being rendered or a Chrome extension is fair game.
+								In our evaluation, we have demonstrated leakage of the following information:
+
+								<ul>
+									<li>The list of same-site tabs which a user currently has open</li>
+									<li>Phone numbers, addresses, and bank account information displayed on a website
+									</li>
+									<li>Usernames, passwords, and credit card numbers autofilled by credential managers
+									</li>
+									<li>Under certain circumstances, images in Google Photos which a user is currently viewing</li>
+									<li>Information sensitive to an individual Chrome extension, such as its login
+										information</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingAbuse">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseAbuse" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseAbuse">
+								Has Spook.js been abused in the wild?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseAbuse" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingAbuse">
+							<div class="accordion-body">
+								We do not have any evidence so far that Spook.js has been or not
+								been abused in the wild.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingDetect">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseDetect" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseDetect">
+								Can I detect if someone has used Spook.js against me?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseDetect" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingDetect">
+							<div class="accordion-body">
+								It is highly unlikely, because the attack code runs in the browser and does not
+								leave traces in traditional system log files.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingStopExtension">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseStopExtension" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseStopExtension">
+								Should I stop using Chrome extensions?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseStopExtension" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingStopExtension">
+							<div class="accordion-body">
+								<p>
+									No, you can continue using Chrome extensions. While we have found issues with Chrome's
+									extension isolation, Spook.js is still relatively hard to mount and
+									requires substantial side channel expertise. Moreover, in response to our work,
+									Google has deployed changes to how extensions are laid out in memory, which
+									prevents them from being affected by Spook.js. See the 'What countermeasures are
+									available?' question for more information.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingStopPassword">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseStopPassword" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseStopPassword">
+								Should I stop using credential managers?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseStopPassword" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingStopPassword">
+							<div class="accordion-body">
+								No, you can (and should!) continue using credential managers. While credential recovery
+								is possible, it can only happen if the attacker has obtained a webpage on the domain
+								associated with the credential. This limits the risk of credential theft, as most
+								websites do not allow users to upload webpages arbitrarily. On balance, not using
+								credential managers puts your passwords at much greater risk of being insecurly stored
+								and subsequently stolen.
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<h5 class="green">Technical Details</h5>
+				</div>
+				<div class="accordion accordion-flush" id="technical-details" style="padding-top: 10px;">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingJS">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseJS" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseJS">
+								What is JavaScript?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseJS" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingJS">
+							<div class="accordion-body">
+								JavaScript is a programming language understood by web browsers, making it one
+								of the core components of the web. It is used by interactive websites such as
+								social media, e-commerce, and games. While JavaScript-based side channel attacks are
+								harder to design and implement, they are much more dangerous as browsers execute
+								JavaScript code automatically and without any user interaction. In particular,
+								JavaScript-based attacks do not require the user to run any malicious software on their
+								devices.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingSpeculative">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseSpeculative" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseSpeculative">
+								What is Speculative Execution?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseSpeculative" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingSpeculative">
+							<div class="accordion-body">
+								<p>
+									Modern processors improve performance by predicting if a branch in program code
+									will be taken or not, especially if the branch's condition cannot be computed yet.
+									If a processor predicts that a branch will be taken, it will speculatively start
+									executing the instructions within the branch, even though
+									it has not calculated the outcome of the branch. If the branch is actually taken,
+									its instructions have been partially computed already, bringing in the performance
+									benefits. On the contrary, if the branch is actually not taken, the processor
+									attempts to roll back
+									the instructions it speculatively executed.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingSidechannel">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseSidechannel" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseSidechannel">
+								What is a Side Channel Attack?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseSidechannel" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingSidechannel">
+							<div class="accordion-body">
+								<p>
+									The majority of attacks on computer systems take advantage of vulnerabilities in the
+									algorithms they use. For example, they exploit bugs, buffer overflows or bad random number generators in order to break the security of the targeted system. 
+									In contrast, a side channel attack leverages the hardware of the system in order to attack it. Common side channel examples include monitoring the system's power consumption, electromagnetic radiation, and even sound.
+								</p>
+								<p>
+								 One popular source of side channels (which we also use for Spook.js) is the processor's cache. The cache is a hardware component which stores recently used data in memory to
+									provide faster access. Although this speeds up performance, an attacker can measure the time it takes to retrieve certain data and thus infer if another program has accessed it. This allows the attacker to retrieve the target's memory access pattern, which in many cases is highly correlated with the data processed by the target. Finally, cache side channels are useful as a building block in speculative and transient execution attacks, such as Spook.js, Spectre and Meltdown.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingSpectre">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseSpectre" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseSpectre">
+								What is Spectre?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseSpectre" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingSpectre">
+							<div class="accordion-body">
+								<p>
+									<a href="https://spectreattack.com/">Spectre</a> is a hardware vulnerability that
+									affects nearly every general purpose processor. This includes nearly all modern
+									Intel, AMD, and Apple CPUs, both for desktops and laptops. At a high level, the
+									majority of recent processors predict the outcome of a branch if it cannot be
+									computed quickly, and continue executing instructions along the prediction. If the
+									prediction is incorrect, the processor must roll back the instructions it executed
+									speculatively, alongside any state changes incurred by these instructions.
+								</p>
+								<p>
+									However, speculative execution leaves traces in the CPU's microarchitectural state,
+									notably in the cache. Thus, a Spectre attacker might confuse the CPU's branch
+									predictor into incorrectly executing instructions that should not have been executed
+									otherwise. In case this incorrect speculation operates over private data, it is
+									possible to leak the data via a side channel thus allowing attackers to read data
+									otherwise inaccessible to them. In particular, in case a suitable Spectre-vulnerable
+									code pattern (gadget) is present in a process belonging to a targeted program, an
+									attacker might abuse this gadget in order to recover the contents of the process's
+									entire address space and the data within it. Being a fundamental issue with
+									speculative execution, Spectre is a threat to nearly all software, ranging from the
+									computer's operating system to the web browser.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingSiteiso">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseSiteiso" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseSiteiso">
+								What is Strict Site Isolation?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseSiteiso" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingSiteiso">
+							<div class="accordion-body">
+								<p>
+									Operating systems such as Windows, Linux, and macOS currently isolate different
+									programs into different units of execution called processes. The CPU then enforces
+									this isolation at the hardware level, preveting one process from accessing the
+									contents of other processes.
+								</p>
+								<p>
+									Strict Site Isolation is a recent browser architecture aimed at increasing browser
+									security. Rather then arbitrarily assign different websites into different
+									processes, browsers with Strict Site Isolation enabled ensure that content from
+									different websites will be located in different processes. For example, data
+									pertaining to google.com will never share the same process as the data for
+									wikipedia.org, thus ensuring that these websites are isolated from each other at the
+									hardware level.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingeTLD">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseeTLD" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseeTLD">
+								What is eTLD+1?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseeTLD" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingeTLD">
+							<div class="accordion-body">
+								<p>
+									eTLD+1 is an acronym for effective top-level domain plus one. A top-level domain
+									(TLD) is the part of a domain name without dots, such as "com", "org", or "edu".
+									Users can register domain names under a TLD, like "example.com".
+									On the other hand, an effective top-level domain (eTLD) contains dots and is
+									therefore not a true TLD, but is the part of a domain name under which subdomains
+									can be registered directly. An example is "edu.au", with "adelaide.edu.au" registered under it.
+								</p>
+								<p>
+									The +1 refers to the term that comes just before the TLD or eTLD, delimited
+									by a dot. That is, for "example.com" it is "example", and for "adelaide.edu.au" it
+									is "adelaide". If two websites share a TLD or eTLD as well as the term preceding it,
+									Chrome might consolidate them into the same process, despite Strict Site Isolation.
+									Thus, Chrome will separate "example.com" and "example.net" due to different TLDs, and also
+									"example.com" and "attacker.com" because the +1 terms (preceding the TLD) are different.
+									However, "attacker.example.com" and "corporate.example.com" are allowed to share the same
+									process due to their common eTLD+1 of "example.com". This allows pages hosted under "attacker.example.com"
+									to potentially extract information from pages under "corporate.example.com".
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingSpectre">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseSpectreAttack" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseSpectreAttack">
+								If Strict Site Isolation was deployed to mitigate Spectre, why is a Spectre-class attack
+								still possible?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseSpectreAttack" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingSpectre">
+							<div class="accordion-body">
+								<p>
+									Spectre is fundamentally a hardware vulnerability where footprints of speculative
+									execution are not cleaned up completely within the processor's state. Thus, Strict Site
+									Isolation cannot fix Spectre. Instead, Strict Site Isolation attempts to limit
+									information leakage by separating
+									the contents of different websites into different processes.
+								</p>
+								<p>
+									However, there are certain conditions under which Chrome does not separate two
+									websites. The most prominent is the case where two websites sharing an eTLD+1 domain
+									are opened in separate tabs, while the system is already under memory pressure from
+									other tabs being open. In our paper, we identified several services which host
+									attacker-controlled JavaScript code on the same eTLD+1 domain as a page containing
+									sensitive information, such as the service's login page. In this example, in case
+									the user opens a page hosting Spook.js attack code in parallel to the service's login
+									page, Chrome's Strict Site Isolation implementation consolidates these two pages
+									into the same process. This then allows our attack to extract the user's
+									credentials as these are being autofilled by the browser's credential manager.
+
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingDifference">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseDifference" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseDifference">
+								So what is different between Spook.js and Spectre?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseDifference" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingDifference">
+							<div class="accordion-body">
+								<p>
+									Since Spectre's original introduction in 2018, browser vendors have deployed many
+									countermeasures in order to make Spectre harder to exploit. In addition to Strict
+									Site Isolation, which prevets different webpages from sharing the same process,
+									Chrome also partitions the address space of each process into different 32-bit
+									sandboxes (despite being a 64-bit application). Limiting all values to be 32-bit
+									prevents a Spectre attacker from crossing partition boundaries, thus further
+									limiting information exposure.
+								</p>
+								<p>
+									Spook.js shows that these countermeasures are insufficient in order to protect users
+									from browser-based speculative execution attacks. More specifically, we show that
+									Chrome's Strict Site Isolation implementation consolidates webpages based on their
+									eTLD+1 domain, allowing an attacker-controlled page to extract sensitive information
+									from pages on other subdomains. Next, we also show how to bypass
+									Chrome's 32-bit sandboxing mechanism. We achieve this by using a type confusion
+									attack, which temporarily forces Chrome's JavaScript execution engine to operate on
+									an object of the wrong type. Using this method we can combine multiple 32-bit values
+									into a single 64-bit pointer, which allows us to read the process's entire address
+									space. Finally, going beyond initial proof-of-concepts, we demonstrate end-to-end
+									attacks extracting sensitive information such as the list of open pages, their
+									contents, and even login credentials.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingOther">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseOther" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseOther">
+								Are other web browsers also vulnerable?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseOther" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingOther">
+							<div class="accordion-body">
+								<p>
+									We have tested Spook.js on Chromium, which is the basis of the Chrome browser. Thus,
+									in addition to Chrome itself, we expect most Chromium-based browsers to be
+									vulnerable to some variant of Spook.js. This includes recent versions of Microsoft's
+									<a href="https://www.microsoft.com/en-us/edge">Edge</a> browser, as well as <a
+										href="https://brave.com/">Brave</a> which is a privacy-centered browser.
+								</p>
+								<p>
+									Other browsers like Firefox and Safari use very different JavaScript execution
+									engines, which currently stops Spook.js from working. We leave the task of
+									investigating speculative exection attacks on these browsers to future work.
+									Finally, Firefox has <a
+										href="https://blog.mozilla.org/security/2021/05/18/introducing-site-isolation-in-firefox/">recently
+										introduced</a> Strict Site Isolation in its stable release. While Spook.js does
+									not work on Firefox as is, we note that similarly to Chrome, Firefox also
+									consolidates pages based on their eTLD+1 domain.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingMitigation">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseMitigation" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseMitigation">
+								What countermeasures are available?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseMitigation" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingMitigation">
+							<div class="accordion-body">
+								<p>
+									Web developers can immediately separate untrusted, user-supplied JavaScript code
+									from all other content for their website, hosting all user-supplied JavaScript code
+									at a domain that
+									has a different eTLD+1. This way, Strict Site Isolation will not consolidate
+									attacker-supplied code with
+									potentially sensitive data into the same process, putting the data out of reach even
+									for Spook.js as it cannot cross process boundaries.
+								</p>
+								<p>
+									In addition, sites can register their domain name to the <a
+										href="https://publicsuffix.org/">Public Suffix
+										List</a> (PSL). The PSL is maintained by Mozilla, and
+									is a list of domains under which users can register names directly (even if the
+									domains are not true top-level domains). Chrome will not consolidate pages if their
+									eTLD+1 domain is present in the PSL. That is, x.publicsuffix.com and
+									y.publicsuffix.com will always be separated.
+								</p>
+								<p>
+									Finally, as a response to our work, Google introduced <a
+										href="https://security.googleblog.com/2021/07/protecting-more-with-site-isolation.html">
+										Strict Extension Isolation</a>, a feature which
+									prevents multiple extensions from being consolidated into the same process under memory
+									pressure. This stops Spook.js (packaged as a malicious extension) from reading the
+									memory of other extensions. Strict Extension Isolation is enabled as of Chrome versions 92 and up.
+									We also link a <a href="https://blog.chromium.org/2021/03/mitigating-side-channel-attacks.html">
+									blog post</a> by Google's Chromium Project on tips for web developers to defend their sites
+									against side channel attacks.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingTechnical">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseTechnical" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseTechnical">
+								Is there more technical information available?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseTechnical" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingTechnical">
+							<div class="accordion-body">
+								Yes, there is an academic paper available <a href="files/spook-js.pdf">here</a>, also
+								through the download button at the top of this webpage. It will appear at the 43rd IEEE
+								Symposium on Security and Privacy (S&P'22) in May 2022.
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="container">
+					<h5 class="green">Miscellaneous</h5>
+				</div>
+				<div class="accordion accordion-flush" id="miscellaneous" style="padding-top: 10px;">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingPoC">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapsePoC" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapsePoC">
+								Is there a proof-of-concept?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapsePoC" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingPoC">
+							<div class="accordion-body">
+								<p>Yes, please see our GitHub <a href="https://github.com/spookjs/spookjs-poc">repository</a>.</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingWhyattack">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseWhyattack" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseWhyattack">
+								Why did you attack Tumblr and LastPass?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseWhyattack" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingWhyattack">
+							<div class="accordion-body">
+								Our rationale for attacking Tumblr and LastPass simply arose from the fact that they are
+								a widely used website and Chrome extension respectively, and are likely to contain
+								sensitive information. As a disclaimer, we clarify that Spook.js exploits weaknesses in
+								the Strict Site Isolation mechanism of the Chrome browser, and does not rely on
+								vulnerabilities in either service. In particular, we do not discourage users from using
+								these services.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingLogo">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseLogo" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseLogo">
+								Can I use the logo?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseLogo" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingLogo">
+							<div class="accordion-body">
+								<p>
+									Our Spook.js logo contains the logo of the Chromium project, which is
+									published under the
+									<a href="https://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 Generic</a>
+									(CC BY 2.5) license. We acknowledge that the Chromium logo belongs to
+									the Chromium project, maintained by Google. While we have not modified the
+									Chromium logo itself, we include it as a component of the Spook.js logo.
+								</p>
+								<p>
+									Accordingly, we release our logo under the same license. You can modify, redistribute, and copy it
+									freely. Logo (excluding the Chromium logo component) designed by Jason Kim (who had to teach himself a bit of
+									digital illustration just for it!)
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</section>
+			<section id="acknowledgments">
+				<h4><i class="fa fa-comments" style="padding-right: 10px;"></i>Acknowledgments</h4>
+				<div class="block">
+					<p>
+						This work was supported by
+						the Air Force Office of Scientific Research (AFOSR) under award number FA9550-20-1-0425;
+						an ARC Discovery Early Career Researcher Award (project number DE200101577);
+						an ARC Discovery Project (project number DP210102670);
+						the Defense Advanced Research Projects Agency (DARPA) and
+						Air Force Research Laboratory (AFRL) under contracts FA8750-19-C-0531 and HR001120C0087;
+						Israel Science Foundation grants 702/16 and 703/16;
+						the National Science Foundation under grant CNS-1954712;
+						Len Blavatnik and the Blavatnik Family foundation and Blavatnik ICRC at Tel-Aviv University;
+						Robert Bosch Foundation;
+						and gifts from Intel and AMD.
+					</p>
+				</div>
+			</section>
+		</div>
+
+		<footer>
+			<div class="text-center w-100">
+				<span>Copyright &copy; Georgia Institute of Technology. All rights reserved.</span>
+			</div>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+			crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+			crossorigin="anonymous"></script>
+
+	</body>
+
+</html>
