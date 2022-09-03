@@ -5,25 +5,19 @@ body {
 }
 
 .btn, .btn-primary:active {
-	background: #0c7a45;
+	background: #002975;
 	border: #000000;
 	border-radius: 20px;
 }
 
-.btn-primary:hover, .btn-primary:focus {
-	color: #fff;
-	background-color: #006426;
-	border: #000000;
-}
-
 a {
-	color: #4d4d4d;
+	color: #636363;
 	font-weight: 400;
 	text-decoration: none;
 }
 
-.green {
-	color: #0c7a45;
+.gray {
+	color: #636363;
 }
 
 .badge {
@@ -66,7 +60,7 @@ h4 {
 }
 
 h1 {
-	color: #229d0f;
+	color: #636363;
 }
 
 h5 {
@@ -115,7 +109,7 @@ h5 {
 }
 
 footer {
-	background: #0c7a45;
+	background: #002975;
 	color: white;
 	font-size: 0.9em;
 	margin-top: 20px;
@@ -131,14 +125,10 @@ footer {
 	padding-bottom: 20px !important;
   }
 
-.accordion-button:not(.collapsed) {
-	color: #0c7a45 !important;
+/* .accordion-button:not(.collapsed) {
+	color: #636363 !important;
 	background-color: #ffffff !important;
-}
-
-.accordion-button::after {
-    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c7a45'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
- }
+} */
 
  :focus {
 	outline: 0 !important;

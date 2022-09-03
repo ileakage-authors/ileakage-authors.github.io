@@ -45,7 +45,7 @@
 				<div class="row align-items-center">
 					<div class="col-sm-1"></div>
 					<div class="col-sm-10">
-						<h1 class="description text-center">iLeakage. <span style="color: #4d4d4d;">Browser-based Speculative Execution Attacks on Apple Devices.</span></h2>
+						<h1 class="description text-center">iLeakage. <span style="color: #636363;">Browser-based Speculative Execution Attacks on Apple Devices.</span></h2>
 					</div>
 					<div class="col-sm-1"></div>
 				</div>
@@ -55,46 +55,40 @@
 
 		<div class="container">
 			<section id="abstract">
-				<h4><i class="fa fa-apple" style="padding-right: 10px;"></i>Overview of the iLeakage Attack</h4>
+				<h4><i class="fa fa-apple" style="padding-right: 10px;"></i>Overview of the <span style="color: #002975;">iLeakage Attack.</span></h4>
 				<div class="container">
 					<p>
-						We present iLeakage, a transient execution side channel attack targeting <a href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon CPUs</a> running the <a href="https://www.apple.com/safari/">Safari web browser</a> on macOS or iOS. Apple has degraded the timer resolution for their CPUs at the OS level, and even more so in Safari. Furthermore, Apple has introduced measures in Safari to prevent unauthorized reads from its full address space even in the face of <a href="https://spectreattack.com/">Spectre attacks</a>. In spite of this, we show it is possible for malicious JavaScript and WebAssembly hosted on any webpage to recover sensitive information from a target webpage.
+						We present iLeakage, a transient execution side channel attack targeting <a href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon CPUs</a> running the <a href="https://www.apple.com/safari/">Safari web browser</a> on macOS or iOS. Apple has degraded the timer resolution for their CPUs at the OS level, and even more so in Safari. Furthermore, Apple has introduced measures in Safari to prevent unauthorized reads from its full address space even in the face of <a href="https://spectreattack.com/">Spectre attacks</a>.
 					</p>
 					<p>
-						More specifically, we show that an attacker-controlled webpage can know which other pages from
-						the same websites a
-						user is currently browsing, retrieve sensitive information from these pages, and even recover
-						login credentials (e.g., username and password) when they are autofilled. We further demonstrate
-						that the attacker
-						can retrieve data from Chrome extensions (such as credential managers)
-						if a user installs a malicous extension.
+						In spite of this, we show it is possible for malicious JavaScript and WebAssembly hosted on any webpage to recover sensitive information from a target webpage. These targets include popular online services such as someone's Gmail inbox or their search history on Amazon.com. In addition, when the target uses a credential manager with autofill, we show iLeakage can recover login credentials.
 					</p>
 
 					<div class="row" style="padding-top: 10px; text-align: center;">
 						<div class="col-xs-12 button-wrapper">
-							<a href="files/spook-js.pdf" target="_blank" class="btn btn-primary mr-2" style="margin-right: 10px;"><i
-									class="fa fa-download" style="padding-right: 10px;"></i>Download the Paper (PDF)</a>
-							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#cite-spookjs"><i
-									class="fa fa-quote-left" style="padding-right: 10px;"></i> Cite (BibTeX)</a>
+							<a href="files/ileakage.pdf" target="_blank" class="btn btn-primary mr-2" style="margin-right: 10px;"><i
+									class="fa fa-file-pdf-o" style="padding-right: 10px;"></i>View Our Paper</a>
+							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#cite-ileakage"><i
+									class="fa fa-angle-double-right" style="padding-right: 5px;"></i> Cite (BibTeX)</a>
 						</div>
 					</div>
 
-					<div class="modal fade" id="cite-spookjs" tabindex="-1" role="dialog"
+					<div class="modal fade" id="cite-ileakage" tabindex="-1" role="dialog"
 						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLongTitle">Cite Spook.js</h5>
+									<h5 class="modal-title" id="exampleModalLongTitle">Cite iLeakage</h5>
 								</div>
 
 								<div class="modal-body">
 									<textarea class="form-control rounded-0" id="citeTextarea" rows="8" readonly>
 
-@inproceedings{spookjs,
-	title = {Spook.js: Attacking Chrome Strict Site Isolation via Speculative Execution},
-	author = {Ayush Agarwal and Sioli O'Connell and Jason Kim and Shaked Yehezkel and Daniel Genkin and Eyal Ronen and Yuval Yarom},
-	booktitle = {43rd IEEE Symposium on Security and Privacy (S\&P'22)},
-	year = {2022},
+@inproceedings{ileakage,
+	title = {iLeakage: Browser-based Speculative Execution Attacks on Apple Devices},
+	author = {Jason Kim and Stephan van Schaik and Daniel Genkin},
+	booktitle = {TBD},
+	year = {2023},
 }
 		
 										</textarea>
@@ -113,10 +107,10 @@
 			</section>
 
 			<section id="demos">
-				<h4><i class="fa fa-exclamation-triangle" style="padding-right: 10px;"></i>What can Spook.js do?</h4>
+				<h4><i class="fa fa-safari" style="padding-right: 10px;"></i>Demo <span style="color: #002975;">Videos.</span></h4>
 
 				<div class="container">
-					<h5 class="green">Attacking Tumblr with Chrome's Built-in Credential Manager</h5>
+					<h5 class="gray">Attacking Tumblr with Chrome's Built-in Credential Manager</h5>
 					<p>
 						We deployed Spook.js on a Tumblr blog, targeting a password that was autofilled into Tumblr's
 						login page by Chrome's built-in credential manager. We show that our blog can be rendered by the
@@ -124,7 +118,7 @@
 					</p>
 					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bP9Hquj5PH4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-					<h5 class="green" style="margin-top: 20px;">Attacking LastPass with a Malicious Chrome Extension</h5>
+					<h5 class="gray" style="margin-top: 20px;">Attacking LastPass with a Malicious Chrome Extension</h5>
 
 					<p>
 						This time, we packaged Spook.js as a Chrome extension. We show that under certain conditions,
@@ -137,57 +131,41 @@
 			</section>
 
 			<section id="people">
-				<h4 style="padding-top: 20px;"><i class="fa fa-users" style="padding-right: 10px;"></i>Who are the people behind Spook.js?</h4>
+				<h4 style="padding-top: 20px;"><i class="fa fa-university" style="padding-right: 10px;"></i>The People <span style="color: #002975;">Behind iLeakage.</span></h4>
 				<div class="container">
 					<ul>
-                        <li><a href="https://www.linkedin.com/in/agarwalayush9">Ayush Agarwal</a> <span class="badge badge-michigan"><a class="univ"
-									href="https://umich.edu/">University of Michigan</a></span></li>
-						<li>Sioli O'Connell <span class="badge badge-adelaide"><a class="univ"
-									href="https://www.adelaide.edu.au/">University of Adelaide</a></span></li>
 						<li><a href="https://jasonkim.page/">Jason Kim </a><span class="badge badge-gatech"><a class="univ"
 									href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
-						<li>Shaked Yehezkel <span class="badge badge-tau"><a class="univ"
-									href="https://english.tau.ac.il/">Tel Aviv University</a></span></li>
+						<li><a href="https://www.synkhronix.com/about/">Stephan van Schaik</a> <span class="badge badge-michigan"><a class="univ"
+									href="https://umich.edu/">University of Michigan</a></span></li>
 						<li><a href="https://www.cc.gatech.edu/~genkin/">Daniel Genkin</a> <span class="badge badge-gatech"><a class="univ"
 									href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
-						<li><a href="https://eyalro.net/">Eyal Ronen</a> <span class="badge badge-tau"><a class="univ"
-									href="https://english.tau.ac.il/">Tel Aviv University</a></span></li>
-						<li><a href="https://cs.adelaide.edu.au/~yval">Yuval Yarom</a> <span class="badge badge-adelaide"><a class="univ"
-									href="https://www.adelaide.edu.au/">University of Adelaide</a></span></li>
 					</ul>
-					<p style="text-align: center;"><b>Contact us at <a href="mailto:info@spookjs.com">info@spookjs.com</a></b></p>
+					<p style="text-align: center;"><b>Contact us at <a href="mailto:info@ileakage.com">info@ileakage.com</a></b></p>
 					<br>
 
 					<div class="row align-items-center" style="margin-top: -20px; margin-bottom: -20px;">
-						<div class="col-sm-1"></div>
+						<div class="col-sm-3"></div>
 						<div class="col-sm-3" style="text-align: center;">
 							<img class="img-fluid" src="img/gatech.png" alt="Georgia Institute of Technology"
 								style="padding: 10px; max-height: 100px;" />
 						</div>
-						<div class="col-sm-2" style="text-align: center;">
-							<img class="img-fluid" src="img/adelaide.svg" alt="University of Adelaide"
-								style="padding: 10px; max-height: 100px;" />
-						</div>
-						<div class="col-sm-2" style="text-align: center;">
+						<div class="col-sm-3" style="text-align: center;">
 							<img class="img-fluid" src="img/umich.png" alt="University of Michigan"
 								style="padding: 10px; max-height: 80px;" />
 						</div>
-						<div class="col-sm-3" style="text-align: center;">
-							<img class="img-fluid" src="img/tau.png" alt="Tel Aviv University"
-								style="padding: 10px; max-height: 100px;" />
-						</div>
-						<div class="col-sm-1"></div>
+						<div class="col-sm-3"></div>
 					</div>
 				</div>
 			</section>
 
 			<section id="qa">
-				<h4 style="padding-top: 20px;"><i class="fa fa-question-circle" style="padding-right: 10px;"></i>More Questions and Answers</h4>
+				<h4 style="padding-top: 20px;"><i class="fa fa-question-circle" style="padding-right: 10px;"></i>Frequently Asked <span style="color: #002975;">Questions.</span></h4>
 
 				<div class="container">
-					<h5 class="green">Impact and Potential Concerns</h5>
+					<h5 class="gray">Impact and Potential Concerns</h5>
 				</div>
-				<div class="accordion accordion-flush" id="impact-and-potential-concerns" style="padding-top: 10px;">
+				<div class="accordion accordion-flush" id="impact-and-potential-concerns" style="margin-top: -10px;">
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingAffected">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -328,9 +306,9 @@
 				</div>
 
 				<div class="container">
-					<h5 class="green">Technical Details</h5>
+					<h5 class="gray">Technical Details</h5>
 				</div>
-				<div class="accordion accordion-flush" id="technical-details" style="padding-top: 10px;">
+				<div class="accordion accordion-flush" id="technical-details" style="margin-top: -10px;">
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingJS">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -664,9 +642,9 @@
 				</div>
 
 				<div class="container">
-					<h5 class="green">Miscellaneous</h5>
+					<h5 class="gray">Miscellaneous</h5>
 				</div>
-				<div class="accordion accordion-flush" id="miscellaneous" style="padding-top: 10px;">
+				<div class="accordion accordion-flush" id="miscellaneous" style="margin-top: -10px;">
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingPoC">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -733,20 +711,10 @@
 
 			</section>
 			<section id="acknowledgments">
-				<h4><i class="fa fa-comments" style="padding-right: 10px;"></i>Acknowledgments</h4>
+				<h4><i class="fa fa-bookmark" style="padding-right: 10px;"></i>Acknowledgments</h4>
 				<div class="block">
 					<p>
-						This work was supported by
-						the Air Force Office of Scientific Research (AFOSR) under award number FA9550-20-1-0425;
-						an ARC Discovery Early Career Researcher Award (project number DE200101577);
-						an ARC Discovery Project (project number DP210102670);
-						the Defense Advanced Research Projects Agency (DARPA) and
-						Air Force Research Laboratory (AFRL) under contracts FA8750-19-C-0531 and HR001120C0087;
-						Israel Science Foundation grants 702/16 and 703/16;
-						the National Science Foundation under grant CNS-1954712;
-						Len Blavatnik and the Blavatnik Family foundation and Blavatnik ICRC at Tel-Aviv University;
-						Robert Bosch Foundation;
-						and gifts from Intel and AMD.
+						TBD
 					</p>
 				</div>
 			</section>
