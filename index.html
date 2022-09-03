@@ -163,7 +163,7 @@
 				<h4 style="padding-top: 20px;"><i class="fa fa-question-circle" style="padding-right: 10px;"></i>Frequently Asked <span style="color: #002975;">Questions.</span></h4>
 
 				<div class="container">
-					<h5 class="gray">Impact and Potential Concerns</h5>
+					<h5 class="gray">The Basics</h5>
 				</div>
 				<div class="accordion accordion-flush" id="impact-and-potential-concerns" style="margin-top: -10px;">
 					<div class="accordion-item">
@@ -171,15 +171,13 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseAffected" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseAffected">
-								Have I been affected by this attack?
+								Is my Apple device affected?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseAffected" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingAffected">
 							<div class="accordion-body">
-								If you have an Intel processor or an Apple device with the M1 chip, then yes with very
-								high probability. We also expect our attack to be effective for AMD machines, however
-								this has been only partially demonstrated.
+								Yes with a very high chance, if you have a device running macOS or iOS with Apple's A-series or M-series CPUs. This encompasses all recent iPhones and iPads, as well as Apple's laptops and desktops from 2020 and onwards.
 							</div>
 						</div>
 					</div>
@@ -188,44 +186,13 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseImpact" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseImpact">
-								What is the impact of this attack?
+								Why is iLeakage significant?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseImpact" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingImpact">
 							<div class="accordion-body">
-								Under certain conditions, malicious JavaScript code running in one Chrome browser tab can read the
-								contents being displayed on another Chrome tab, which might contain sensitive information
-								such as passwords, bank details, etc. Furthermore, malicious extensions might be able to
-								read the contents of other extensions, including sensitive information stored
-								inside them (e.g., passwords inside credential managers).
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingLeaked">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseLeaked" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseLeaked">
-								What other information can be leaked?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseLeaked" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingLeaked">
-							<div class="accordion-body">
-								Anything stored in the memory of a website being rendered or a Chrome extension is fair game.
-								In our evaluation, we have demonstrated leakage of the following information:
-
-								<ul>
-									<li>The list of same-site tabs which a user currently has open</li>
-									<li>Phone numbers, addresses, and bank account information displayed on a website
-									</li>
-									<li>Usernames, passwords, and credit card numbers autofilled by credential managers
-									</li>
-									<li>Under certain circumstances, images in Google Photos which a user is currently viewing</li>
-									<li>Information sensitive to an individual Chrome extension, such as its login
-										information</li>
-								</ul>
+								Code running in one web browser tab should be isolated and not be able to infer anything about other tabs that a user has open. However, with iLeakage, malicious JavaScript and WebAssembly can read the content of a target webpage when a target visits and clicks on an attacker's webpage. This content includes personal information, passwords, or credit card information.
 							</div>
 						</div>
 					</div>
@@ -234,14 +201,13 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseAbuse" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseAbuse">
-								Has Spook.js been abused in the wild?
+								Have malicious actors used iLeakage in practice?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseAbuse" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingAbuse">
 							<div class="accordion-body">
-								We do not have any evidence so far that Spook.js has been or not
-								been abused in the wild.
+								So far, we do not have evidence that iLeakage has been or not been abused. However, we note that iLeakage is a significantly difficult attack to orchestrate end-to-end, and requires advanced knowledge of browser-based side-channel attacks and Safari's implementation.
 							</div>
 						</div>
 					</div>
@@ -250,36 +216,13 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseDetect" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseDetect">
-								Can I detect if someone has used Spook.js against me?
+								Is this attack detectable?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseDetect" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingDetect">
 							<div class="accordion-body">
-								It is highly unlikely, because the attack code runs in the browser and does not
-								leave traces in traditional system log files.
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingStopExtension">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseStopExtension" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseStopExtension">
-								Should I stop using Chrome extensions?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseStopExtension" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingStopExtension">
-							<div class="accordion-body">
-								<p>
-									No, you can continue using Chrome extensions. While we have found issues with Chrome's
-									extension isolation, Spook.js is still relatively hard to mount and
-									requires substantial side channel expertise. Moreover, in response to our work,
-									Google has deployed changes to how extensions are laid out in memory, which
-									prevents them from being affected by Spook.js. See the 'What countermeasures are
-									available?' question for more information.
-								</p>
+								iLeakage is highly unlikely to be detected, since the attack runs in Safari and does not leave traces in the system's log files. However, traces of an attacker webpage hosting iLeakage may be present in the browser's cache of pages it has recently visited.
 							</div>
 						</div>
 					</div>
@@ -288,25 +231,20 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseStopPassword" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseStopPassword">
-								Should I stop using credential managers?
+								Am I at risk if I use credential managers?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseStopPassword" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingStopPassword">
 							<div class="accordion-body">
-								No, you can (and should!) continue using credential managers. While credential recovery
-								is possible, it can only happen if the attacker has obtained a webpage on the domain
-								associated with the credential. This limits the risk of credential theft, as most
-								websites do not allow users to upload webpages arbitrarily. On balance, not using
-								credential managers puts your passwords at much greater risk of being insecurly stored
-								and subsequently stolen.
+								Not for the most part. In fact, we encourage using credential managers since most of them will generate strong and unique passwords for you for each account you have, while requiring you to remember just one passphrase. In general, this is a better approach than reusing passwords or storing them insecurely. While iLeakage can recover credentials that are autofilled into a webpage, we note that many platforms require user interaction for autofill to occur. 
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="container">
-					<h5 class="gray">Technical Details</h5>
+					<h5 class="gray">For Tech-Savvy Readers</h5>
 				</div>
 				<div class="accordion accordion-flush" id="technical-details" style="margin-top: -10px;">
 					<div class="accordion-item">
@@ -314,44 +252,13 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseJS" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseJS">
-								What is JavaScript?
+								What are JavaScript and WebAssembly?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseJS" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingJS">
 							<div class="accordion-body">
-								JavaScript is a programming language understood by web browsers, making it one
-								of the core components of the web. It is used by interactive websites such as
-								social media, e-commerce, and games. While JavaScript-based side channel attacks are
-								harder to design and implement, they are much more dangerous as browsers execute
-								JavaScript code automatically and without any user interaction. In particular,
-								JavaScript-based attacks do not require the user to run any malicious software on their
-								devices.
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingSpeculative">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseSpeculative" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseSpeculative">
-								What is Speculative Execution?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseSpeculative" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingSpeculative">
-							<div class="accordion-body">
-								<p>
-									Modern processors improve performance by predicting if a branch in program code
-									will be taken or not, especially if the branch's condition cannot be computed yet.
-									If a processor predicts that a branch will be taken, it will speculatively start
-									executing the instructions within the branch, even though
-									it has not calculated the outcome of the branch. If the branch is actually taken,
-									its instructions have been partially computed already, bringing in the performance
-									benefits. On the contrary, if the branch is actually not taken, the processor
-									attempts to roll back
-									the instructions it speculatively executed.
-								</p>
+								JavaScript and WebAssembly are two programming languages that make up the backbone of interactive webpages, such as online games and video streaming services. JavaScript can update the content of the website directly, while WebAssembly is used for high-performance web applications. Ultimately, WebAssembly interfaces with JavaScript to deliver dynamic content to users. Since both are sandboxed in a browser environment, side-channel attacks are notably more difficult to implement in these languages. However, the impact is drastically greater, as browsers execute both types of code automatically and do not require the user to download the malicious program.
 							</div>
 						</div>
 					</div>
@@ -360,20 +267,17 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseSidechannel" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseSidechannel">
-								What is a Side Channel Attack?
+								What is a Side Channel?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseSidechannel" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingSidechannel">
 							<div class="accordion-body">
 								<p>
-									The majority of attacks on computer systems take advantage of vulnerabilities in the
-									algorithms they use. For example, they exploit bugs, buffer overflows or bad random number generators in order to break the security of the targeted system. 
-									In contrast, a side channel attack leverages the hardware of the system in order to attack it. Common side channel examples include monitoring the system's power consumption, electromagnetic radiation, and even sound.
+									Most computer bugs arise from mistakes in programming, such as missing bounds checks or use-after-frees. However, a side-channel attack exploits the implementation of a computer system to attack it, even if the program it runs is a secure algorithm. Systems can leak sensitive data through sound, electromagnetic radiation, or thermal throttling, just for a few examples.
 								</p>
 								<p>
-								 One popular source of side channels (which we also use for Spook.js) is the processor's cache. The cache is a hardware component which stores recently used data in memory to
-									provide faster access. Although this speeds up performance, an attacker can measure the time it takes to retrieve certain data and thus infer if another program has accessed it. This allows the attacker to retrieve the target's memory access pattern, which in many cases is highly correlated with the data processed by the target. Finally, cache side channels are useful as a building block in speculative and transient execution attacks, such as Spook.js, Spectre and Meltdown.
+									Many side channels, including ones we use for iLeakage, comes from the CPU's cache. The cache is a fast but small piece of memory which stores recently used data to speed up repeated accesses. Notwithstanding the performance benefits, one can infer if a target program has used that data by measuring the time to access it. Accordingly, researchers have used cache side channels as a building block for several transient execution attacks such as Spectre. In turn, iLeakage uses Spectre as a building block.
 								</p>
 							</div>
 						</div>
@@ -383,130 +287,17 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseSpectre" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseSpectre">
-								What is Spectre?
+								What are Speculative Execution and Spectre?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseSpectre" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingSpectre">
 							<div class="accordion-body">
 								<p>
-									<a href="https://spectreattack.com/">Spectre</a> is a hardware vulnerability that
-									affects nearly every general purpose processor. This includes nearly all modern
-									Intel, AMD, and Apple CPUs, both for desktops and laptops. At a high level, the
-									majority of recent processors predict the outcome of a branch if it cannot be
-									computed quickly, and continue executing instructions along the prediction. If the
-									prediction is incorrect, the processor must roll back the instructions it executed
-									speculatively, alongside any state changes incurred by these instructions.
+									Virtually all modern CPUs use a performance optimization where they predict if a branch instruction will be taken or not, should the outcome not be readily available. Once a prediction is made, the CPU will execute instructions along the prediction, a process called speculative execution. If the CPU realizes it had mispredicted, it must revert all changes in the state it performed after the prediction. Both desktop and mobile CPUs exhibit this behavior, regardless of manufacturer (such as Apple, AMD, or Intel).
 								</p>
 								<p>
-									However, speculative execution leaves traces in the CPU's microarchitectural state,
-									notably in the cache. Thus, a Spectre attacker might confuse the CPU's branch
-									predictor into incorrectly executing instructions that should not have been executed
-									otherwise. In case this incorrect speculation operates over private data, it is
-									possible to leak the data via a side channel thus allowing attackers to read data
-									otherwise inaccessible to them. In particular, in case a suitable Spectre-vulnerable
-									code pattern (gadget) is present in a process belonging to a targeted program, an
-									attacker might abuse this gadget in order to recover the contents of the process's
-									entire address space and the data within it. Being a fundamental issue with
-									speculative execution, Spectre is a threat to nearly all software, ranging from the
-									computer's operating system to the web browser.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingSiteiso">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseSiteiso" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseSiteiso">
-								What is Strict Site Isolation?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseSiteiso" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingSiteiso">
-							<div class="accordion-body">
-								<p>
-									Operating systems such as Windows, Linux, and macOS currently isolate different
-									programs into different units of execution called processes. The CPU then enforces
-									this isolation at the hardware level, preveting one process from accessing the
-									contents of other processes.
-								</p>
-								<p>
-									Strict Site Isolation is a recent browser architecture aimed at increasing browser
-									security. Rather then arbitrarily assign different websites into different
-									processes, browsers with Strict Site Isolation enabled ensure that content from
-									different websites will be located in different processes. For example, data
-									pertaining to google.com will never share the same process as the data for
-									wikipedia.org, thus ensuring that these websites are isolated from each other at the
-									hardware level.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingeTLD">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseeTLD" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseeTLD">
-								What is eTLD+1?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseeTLD" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingeTLD">
-							<div class="accordion-body">
-								<p>
-									eTLD+1 is an acronym for effective top-level domain plus one. A top-level domain
-									(TLD) is the part of a domain name without dots, such as "com", "org", or "edu".
-									Users can register domain names under a TLD, like "example.com".
-									On the other hand, an effective top-level domain (eTLD) contains dots and is
-									therefore not a true TLD, but is the part of a domain name under which subdomains
-									can be registered directly. An example is "edu.au", with "adelaide.edu.au" registered under it.
-								</p>
-								<p>
-									The +1 refers to the term that comes just before the TLD or eTLD, delimited
-									by a dot. That is, for "example.com" it is "example", and for "adelaide.edu.au" it
-									is "adelaide". If two websites share a TLD or eTLD as well as the term preceding it,
-									Chrome might consolidate them into the same process, despite Strict Site Isolation.
-									Thus, Chrome will separate "example.com" and "example.net" due to different TLDs, and also
-									"example.com" and "attacker.com" because the +1 terms (preceding the TLD) are different.
-									However, "attacker.example.com" and "corporate.example.com" are allowed to share the same
-									process due to their common eTLD+1 of "example.com". This allows pages hosted under "attacker.example.com"
-									to potentially extract information from pages under "corporate.example.com".
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingSpectre">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseSpectreAttack" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseSpectreAttack">
-								If Strict Site Isolation was deployed to mitigate Spectre, why is a Spectre-class attack
-								still possible?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseSpectreAttack" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingSpectre">
-							<div class="accordion-body">
-								<p>
-									Spectre is fundamentally a hardware vulnerability where footprints of speculative
-									execution are not cleaned up completely within the processor's state. Thus, Strict Site
-									Isolation cannot fix Spectre. Instead, Strict Site Isolation attempts to limit
-									information leakage by separating
-									the contents of different websites into different processes.
-								</p>
-								<p>
-									However, there are certain conditions under which Chrome does not separate two
-									websites. The most prominent is the case where two websites sharing an eTLD+1 domain
-									are opened in separate tabs, while the system is already under memory pressure from
-									other tabs being open. In our paper, we identified several services which host
-									attacker-controlled JavaScript code on the same eTLD+1 domain as a page containing
-									sensitive information, such as the service's login page. In this example, in case
-									the user opens a page hosting Spook.js attack code in parallel to the service's login
-									page, Chrome's Strict Site Isolation implementation consolidates these two pages
-									into the same process. This then allows our attack to extract the user's
-									credentials as these are being autofilled by the browser's credential manager.
-
+									<a href="https://spectreattack.com/">Spectre</a> is a hardware vulnerability in virtually all modern CPUs that occurs when speculative execution backfires. While the CPU should ideally revert all changes in state, speculative execution leaves traces in the CPU's microarchitectural state and especially the cache. A Spectre attack coerces the CPU into speculatively executing the wrong flow of instructions. If this wrong flow has instructions depending on sensitive data, their value can be inferred through a side channel even after the CPU realizes the mistake and reverts its changes. An adversary can abuse this behavior to read data that they cannot normally access through program semantics. Because speculative execution is an important part of CPU performance that is infeasible to simply remove as a countermeasure, Spectre continues to be dangerous to software even years after its discovery.
 								</p>
 							</div>
 						</div>
@@ -516,34 +307,17 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseDifference" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseDifference">
-								So what is different between Spook.js and Spectre?
+								How is iLeakage different from Spectre?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseDifference" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingDifference">
 							<div class="accordion-body">
 								<p>
-									Since Spectre's original introduction in 2018, browser vendors have deployed many
-									countermeasures in order to make Spectre harder to exploit. In addition to Strict
-									Site Isolation, which prevets different webpages from sharing the same process,
-									Chrome also partitions the address space of each process into different 32-bit
-									sandboxes (despite being a 64-bit application). Limiting all values to be 32-bit
-									prevents a Spectre attacker from crossing partition boundaries, thus further
-									limiting information exposure.
+									Focusing on the fact that web browsers already provide a sandboxed environment for code execution, Apple has deployed countermeasures which do not thwart Spectre itself, but make its weaponization into recovering secret data more difficult. Safari will normally put each tab into their own process, where Spectre cannot cross process boundaries. In addition, while high-resolution timers facilitate the inference of if data is cached or not (for a cache side channel), they have been removed from browser environments. Safari also uses 35-bit addressing and poisoning techniques to prevent an attacker from crafting their own pointer and from reading its entire (64-bit) address space.
 								</p>
 								<p>
-									Spook.js shows that these countermeasures are insufficient in order to protect users
-									from browser-based speculative execution attacks. More specifically, we show that
-									Chrome's Strict Site Isolation implementation consolidates webpages based on their
-									eTLD+1 domain, allowing an attacker-controlled page to extract sensitive information
-									from pages on other subdomains. Next, we also show how to bypass
-									Chrome's 32-bit sandboxing mechanism. We achieve this by using a type confusion
-									attack, which temporarily forces Chrome's JavaScript execution engine to operate on
-									an object of the wrong type. Using this method we can combine multiple 32-bit values
-									into a single 64-bit pointer, which allows us to read the process's entire address
-									space. Finally, going beyond initial proof-of-concepts, we demonstrate end-to-end
-									attacks extracting sensitive information such as the list of open pages, their
-									contents, and even login credentials.
+									With iLeakage, we demonstrate these countermeasures are still insufficient against Spectre-based attacks in the browser. We introduce a new method to coerce Safari to have one process render more than one webpage. Then, we bypass the poisoning technique by exploiting a performance optimization where Safari changes other data instead of our fake pointer. We also bypass the 35-bit addressing scheme with a speculative type confusion attack. Here, we induce Safari's JavaScript engine to run a function for one datatype on a maliciously crafted datatype while the CPU is performing speculative execution. This function contains a 64-bit read, allowing us to read all of the address space. Finally, we devise a novel microarchitectural primitive to distinguish cache hits from misses despite having a coarse timer. Combining all of this, we show end-to-end attacks on popular websites.
 								</p>
 							</div>
 						</div>
@@ -553,28 +327,17 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseOther" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseOther">
-								Are other web browsers also vulnerable?
+								What about other web browsers?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseOther" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingOther">
 							<div class="accordion-body">
 								<p>
-									We have tested Spook.js on Chromium, which is the basis of the Chrome browser. Thus,
-									in addition to Chrome itself, we expect most Chromium-based browsers to be
-									vulnerable to some variant of Spook.js. This includes recent versions of Microsoft's
-									<a href="https://www.microsoft.com/en-us/edge">Edge</a> browser, as well as <a
-										href="https://brave.com/">Brave</a> which is a privacy-centered browser.
+									On macOS, other popular browsers such as Chrome, Firefox and Microsoft Edge use different JavaScript engines. Since iLeakage exploits idiosyncrasies in Safari's JavaScript engine, these nuances suffice to deter iLeakage from working on them.
 								</p>
 								<p>
-									Other browsers like Firefox and Safari use very different JavaScript execution
-									engines, which currently stops Spook.js from working. We leave the task of
-									investigating speculative exection attacks on these browsers to future work.
-									Finally, Firefox has <a
-										href="https://blog.mozilla.org/security/2021/05/18/introducing-site-isolation-in-firefox/">recently
-										introduced</a> Strict Site Isolation in its stable release. While Spook.js does
-									not work on Firefox as is, we note that similarly to Chrome, Firefox also
-									consolidates pages based on their eTLD+1 domain.
+									However, iOS has a different situation. Due to Apple's App Store and sandboxing policies, other browser apps are forced to use Safari's JavaScript engine. That is, Chrome, Firefox and Edge on iOS are simply wrappers on top of Safari that provide auxiliary features such as synchronizing bookmarks and settings. Consequently, nearly every browser application listed on the App Store is vulnerable to iLeakage.
 								</p>
 							</div>
 						</div>
@@ -584,58 +347,15 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseMitigation" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseMitigation">
-								What countermeasures are available?
+								How can I defend against iLeakage?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseMitigation" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingMitigation">
 							<div class="accordion-body">
 								<p>
-									Web developers can immediately separate untrusted, user-supplied JavaScript code
-									from all other content for their website, hosting all user-supplied JavaScript code
-									at a domain that
-									has a different eTLD+1. This way, Strict Site Isolation will not consolidate
-									attacker-supplied code with
-									potentially sensitive data into the same process, putting the data out of reach even
-									for Spook.js as it cannot cross process boundaries.
+									While we detail countermeasures in our paper (available at the top of this webpage), they must be implemented in Safari's JavaScript engine by Apple. Thus, there are two things you can do as a user. One is to keep your macOS and iOS versions up to date, and we recommend enabling automatic updates for this. Moreover, iLeakage is able to recover passwords and credit cards given that the target uses a credential manager with automatic autofill. If you use a credential manager, we recommend configuring it such that it requires user interaction or authentication before autofilling.
 								</p>
-								<p>
-									In addition, sites can register their domain name to the <a
-										href="https://publicsuffix.org/">Public Suffix
-										List</a> (PSL). The PSL is maintained by Mozilla, and
-									is a list of domains under which users can register names directly (even if the
-									domains are not true top-level domains). Chrome will not consolidate pages if their
-									eTLD+1 domain is present in the PSL. That is, x.publicsuffix.com and
-									y.publicsuffix.com will always be separated.
-								</p>
-								<p>
-									Finally, as a response to our work, Google introduced <a
-										href="https://security.googleblog.com/2021/07/protecting-more-with-site-isolation.html">
-										Strict Extension Isolation</a>, a feature which
-									prevents multiple extensions from being consolidated into the same process under memory
-									pressure. This stops Spook.js (packaged as a malicious extension) from reading the
-									memory of other extensions. Strict Extension Isolation is enabled as of Chrome versions 92 and up.
-									We also link a <a href="https://blog.chromium.org/2021/03/mitigating-side-channel-attacks.html">
-									blog post</a> by Google's Chromium Project on tips for web developers to defend their sites
-									against side channel attacks.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingTechnical">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseTechnical" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseTechnical">
-								Is there more technical information available?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseTechnical" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingTechnical">
-							<div class="accordion-body">
-								Yes, there is an academic paper available <a href="files/spook-js.pdf">here</a>, also
-								through the download button at the top of this webpage. It will appear at the 43rd IEEE
-								Symposium on Security and Privacy (S&P'22) in May 2022.
 							</div>
 						</div>
 					</div>
