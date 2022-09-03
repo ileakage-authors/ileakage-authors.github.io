@@ -2,16 +2,7 @@
 <html lang="en">
 
 	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-NN9P1066KJ"></script>
-		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-NN9P1066KJ');
-		</script>
-
+		<!-- TODO Google Analytics header -->
 		<script>
 			function copy_to_clipboard() {
 				/* Get the text field */
@@ -23,9 +14,6 @@
 
 				/* Copy the text inside the text field */
 				document.execCommand("copy");
-
-				/* Alert the copied text */
-				/*alert("Copied the text: " + copyText.value);*/
 			}
 		</script>
 
@@ -45,6 +33,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
 		<link href="css/theme.css" rel="stylesheet">
 		<title>iLeakage</title>
@@ -66,17 +55,10 @@
 
 		<div class="container">
 			<section id="abstract">
-				<h4><i class="fa fa-chrome" style="padding-right: 10px;"></i>What is it?</h4>
-
+				<h4><i class="fa fa-apple" style="padding-right: 10px;"></i>Overview of the iLeakage Attack</h4>
 				<div class="container">
 					<p>
-
-						Spook.js is a new transient execution side channel attack which targets the Chrome web browser.
-						We show that despite Google's attempts to mitigate <a
-							href="https://spectreattack.com/">Spectre</a> by deploying <a
-							href="https://www.chromium.org/Home/chromium-security/site-isolation">Strict Site
-							Isolation</a>, information extraction via malicious JavaScript code is still possible in
-						some cases.
+						We present iLeakage, a transient execution side channel attack targeting <a href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon CPUs</a> running the <a href="https://www.apple.com/safari/">Safari web browser</a> on macOS or iOS. Apple has degraded the timer resolution for their CPUs at the OS level, and even more so in Safari. Furthermore, Apple has introduced measures in Safari to prevent unauthorized reads from its full address space even in the face of <a href="https://spectreattack.com/">Spectre attacks</a>. In spite of this, we show it is possible for malicious JavaScript and WebAssembly hosted on any webpage to recover sensitive information from a target webpage.
 					</p>
 					<p>
 						More specifically, we show that an attacker-controlled webpage can know which other pages from
