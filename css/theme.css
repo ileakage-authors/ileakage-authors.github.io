@@ -4,7 +4,8 @@ body {
 	font-size: 13pt;
 }
 
-.btn, .btn-primary:active {
+.btn,
+.btn-primary:active {
 	background: #002975;
 	border: #000000;
 	border-radius: 20px;
@@ -26,21 +27,13 @@ a {
 }
 
 h1 {
-	/* margin-top: 20px; */
 	font-weight: 500;
 	font-size: 3em;
+	color: #636363;
 }
 
 h2 {
 	font-size: 2em;
-}
-
-#abstract > div {
-	margin-top: 20px;
-}
-
-#abstract .card {
-	background: #f8fcff;
 }
 
 h4 {
@@ -51,18 +44,6 @@ h4 {
 	width: 100%;
 }
 
-#people > div {
-	margin-top: 20px;
-}
-
-.fa-twitter {
-	color: #1da1f2;
-}
-
-h1 {
-	color: #636363;
-}
-
 h5 {
 	padding-top: 15px;
 	padding-bottom: 0;
@@ -70,7 +51,20 @@ h5 {
 	font-weight: 600;
 }
 
-.question, .block {
+#abstract>div {
+	margin-top: 20px;
+}
+
+#abstract .card {
+	background: #f8fcff;
+}
+
+#people>div {
+	margin-top: 20px;
+}
+
+.question,
+.block {
 	margin-top: 20px;
 	margin-left: 1em;
 	margin-right: 1em;
@@ -81,7 +75,8 @@ h5 {
 	margin-top: 10px;
 }
 
-#accordion .btn, #accordion .btn-link {
+#accordion .btn,
+#accordion .btn-link {
 	background: none;
 	border: none;
 	color: #000;
@@ -123,17 +118,12 @@ footer {
 .jumbotron {
 	padding-top: 30px !important;
 	padding-bottom: 20px !important;
-  }
+}
 
-/* .accordion-button:not(.collapsed) {
-	color: #636363 !important;
-	background-color: #ffffff !important;
-} */
-
- :focus {
+:focus {
 	outline: 0 !important;
 	box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
-  }
+}
 
 .action {
 	color: #ffffff;
@@ -149,7 +139,7 @@ li {
 }
 
 .button-wrapper .btn {
-    margin-bottom:5px;
+	margin-bottom: 5px;
 }
 
 .badge {
@@ -160,16 +150,8 @@ li {
 	background-color: #00274c;
 }
 
-.badge-adelaide {
-	background-color: #d40000;
-}
-
 .badge-gatech {
 	background-color: #b3a369;
-}
-
-.badge-tau {
-	background-color: #000000;
 }
 
 .univ {
