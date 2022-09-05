@@ -61,7 +61,7 @@
 						We present iLeakage, a transient execution side channel attack targeting <a href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon CPUs</a> running the <a href="https://www.apple.com/safari/">Safari web browser</a> on macOS or iOS. Apple has degraded the timer resolution for their CPUs at the OS level, and even more so in Safari. Furthermore, Apple has introduced measures in Safari to prevent unauthorized reads from its full address space even in the face of <a href="https://spectreattack.com/">Spectre attacks</a>.
 					</p>
 					<p>
-						In spite of this, we show it is possible for malicious JavaScript and WebAssembly hosted on any webpage to recover sensitive information from a target webpage. These targets include popular online services such as someone's Gmail inbox or their search history on Amazon.com. In addition, when the target uses a credential manager with autofill, we show iLeakage can recover login credentials.
+						In spite of this, we show it is possible for malicious JavaScript and WebAssembly hosted on any webpage to recover sensitive information from a target webpage. These targets include popular online services such as someone's Gmail inbox or text messages on an Android phone connected with Google Messages. In addition, when the target uses a credential manager with autofill, we show iLeakage can recover login credentials.
 					</p>
 
 					<div class="row" style="padding-top: 10px; text-align: center;">
@@ -108,53 +108,60 @@
 
 			<section id="demos">
 				<h4><i class="fa fa-safari" style="padding-right: 10px;"></i>Demo <span style="color: #002975;">Videos.</span></h4>
-
 				<div class="container">
-					<h5 class="gray">Attacking Tumblr with Chrome's Built-in Credential Manager</h5>
-					<p>
-						We deployed Spook.js on a Tumblr blog, targeting a password that was autofilled into Tumblr's
-						login page by Chrome's built-in credential manager. We show that our blog can be rendered by the
-						same Chrome process as the login page, and that Spook.js can consequently recover the password.
-					</p>
-					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bP9Hquj5PH4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-					<h5 class="gray" style="margin-top: 20px;">Attacking LastPass with a Malicious Chrome Extension</h5>
-
-					<p>
-						This time, we packaged Spook.js as a Chrome extension. We show that under certain conditions,
-					   	multiple extensions may be consolidated and executed from the same process. We take advantage
-					   	of this behavior to read the memory of the LastPass credential manager extension, and recover
-						the master password of the target's vault.
-					</p>
-					<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/yz_s4k1zGwA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<div class="row">
+						<div class="col-md-6" style="margin-bottom: 20px;">
+							<h5 class="gray">Recovering Data From a Gmail Inbox</h5>
+							<p>
+								TODO demo video and captions
+							</p>
+							<div class="ratio ratio-16x9">
+								<iframe src="https://www.youtube-nocookie.com/embed/bP9Hquj5PH4" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope" allowfullscreen></iframe>
+							</div>
+						</div>
+						<div class="col-md-6" style="margin-bottom: 20px;">
+							<h5 class="gray">Recovering Google Account Credentials with LastPass</h5>
+							<p>
+								TODO demo video and captions
+							</p>
+							<div class="ratio ratio-16x9">
+								<iframe src="https://www.youtube-nocookie.com/embed/yz_s4k1zGwA" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
 			<section id="people">
 				<h4 style="padding-top: 20px;"><i class="fa fa-university" style="padding-right: 10px;"></i>The People <span style="color: #002975;">Behind iLeakage.</span></h4>
 				<div class="container">
-					<ul>
-						<li><a href="https://jasonkim.page/">Jason Kim </a><span class="badge badge-gatech"><a class="univ"
-									href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
-						<li><a href="https://www.synkhronix.com/about/">Stephan van Schaik</a> <span class="badge badge-michigan"><a class="univ"
-									href="https://umich.edu/">University of Michigan</a></span></li>
-						<li><a href="https://www.cc.gatech.edu/~genkin/">Daniel Genkin</a> <span class="badge badge-gatech"><a class="univ"
-									href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
-					</ul>
-					<p style="text-align: center;"><b>Contact us at <a href="mailto:info@ileakage.com">info@ileakage.com</a></b></p>
-					<br>
-
-					<div class="row align-items-center" style="margin-top: -20px; margin-bottom: -20px;">
-						<div class="col-sm-3"></div>
-						<div class="col-sm-3" style="text-align: center;">
-							<img class="img-fluid" src="img/gatech.png" alt="Georgia Institute of Technology"
-								style="padding: 10px; max-height: 100px;" />
+					<div class="row">
+						<div class="col-md-4">
+							<ul>
+								<li><a href="https://jasonkim.page/">Jason Kim </a><span class="badge badge-gatech"><a class="univ"
+											href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
+								<li><a href="https://www.synkhronix.com/about/">Stephan van Schaik</a> <span class="badge badge-michigan"><a class="univ"
+											href="https://umich.edu/">University of Michigan</a></span></li>
+								<li><a href="https://www.cc.gatech.edu/~genkin/">Daniel Genkin</a> <span class="badge badge-gatech"><a class="univ"
+											href="https://www.gatech.edu/">Georgia Institute of Technology</a></span></li>
+							</ul>
 						</div>
-						<div class="col-sm-3" style="text-align: center;">
-							<img class="img-fluid" src="img/umich.png" alt="University of Michigan"
-								style="padding: 10px; max-height: 80px;" />
+						<div class="col-md-8">
+							<p style="text-align: center;"><b>Contact us at <a href="mailto:info@ileakage.com">info@ileakage.com</a></b></p>
+							<br>
+							<div class="row align-items-center" style="margin-top: -20px; margin-bottom: -20px;">
+								<div class="col-md-2"></div>
+								<div class="col-md-4" style="text-align: center;">
+									<img class="img-fluid" src="img/gatech.png" alt="Georgia Institute of Technology"
+										style="padding: 10px; max-height: 100px;" />
+								</div>
+								<div class="col-md-3" style="text-align: center;">
+									<img class="img-fluid" src="img/umich.png" alt="University of Michigan"
+										style="padding: 10px; max-height: 80px;" />
+								</div>
+								<div class="col-md-3"></div>
+							</div>
 						</div>
-						<div class="col-sm-3"></div>
 					</div>
 				</div>
 			</section>
@@ -177,7 +184,7 @@
 						<div id="panelsStayOpen-collapseAffected" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingAffected">
 							<div class="accordion-body">
-								Yes with a very high chance, if you have a device running macOS or iOS with Apple's A-series or M-series CPUs. This encompasses all recent iPhones and iPads, as well as Apple's laptops and desktops from 2020 and onwards.
+								Yes (with a very high chance), if you have a device running macOS or iOS with Apple's A-series or M-series CPUs. This includes all recent iPhones and iPads, as well as Apple's laptops and desktops from 2020 and onwards.
 							</div>
 						</div>
 					</div>
@@ -197,17 +204,19 @@
 						</div>
 					</div>
 					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingAbuse">
+						<h2 class="accordion-header" id="panelsStayOpen-headingMitigation">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseAbuse" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseAbuse">
-								Have malicious actors used iLeakage in practice?
+								data-bs-target="#panelsStayOpen-collapseMitigation" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseMitigation">
+								How can I defend against iLeakage?
 							</button>
 						</h2>
-						<div id="panelsStayOpen-collapseAbuse" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingAbuse">
+						<div id="panelsStayOpen-collapseMitigation" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingMitigation">
 							<div class="accordion-body">
-								So far, we do not have evidence that iLeakage has been or not been abused. However, we note that iLeakage is a significantly difficult attack to orchestrate end-to-end, and requires advanced knowledge of browser-based side-channel attacks and Safari's implementation.
+								<p>
+									While we detail countermeasures in our paper (available at the top of this webpage), they must be implemented in Safari's JavaScript engine by Apple. However, there are two things you can do as a user. One is to keep your macOS and iOS versions up to date, and we recommend enabling automatic updates for this. Moreover, iLeakage is able to recover passwords and credit cards given that the target uses a credential manager with automatic autofill. If you use a credential manager, we recommend configuring it such that it requires user interaction or authentication before autofilling.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -223,6 +232,21 @@
 							aria-labelledby="panelsStayOpen-headingDetect">
 							<div class="accordion-body">
 								iLeakage is highly unlikely to be detected, since the attack runs in Safari and does not leave traces in the system's log files. However, traces of an attacker webpage hosting iLeakage may be present in the browser's cache of pages it has recently visited.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingAbuse">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseAbuse" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseAbuse">
+								Have malicious actors used iLeakage in practice?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseAbuse" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingAbuse">
+							<div class="accordion-body">
+								So far, we do not have evidence that iLeakage has been or not been abused. However, we note that iLeakage is a significantly difficult attack to orchestrate end-to-end, and requires advanced knowledge of browser-based side-channel attacks and Safari's implementation.
 							</div>
 						</div>
 					</div>
@@ -314,14 +338,20 @@
 							aria-labelledby="panelsStayOpen-headingDifference">
 							<div class="accordion-body">
 								<p>
-									Focusing on the fact that web browsers already provide a sandboxed environment for code execution, Apple has deployed countermeasures which do not thwart Spectre itself, but make its weaponization into recovering secret data more difficult. Safari will normally put each tab into their own process, where Spectre cannot cross process boundaries. In addition, while high-resolution timers facilitate the inference of if data is cached or not (for a cache side channel), they have been removed from browser environments. Safari also uses 35-bit addressing and poisoning techniques to prevent an attacker from crafting their own pointer and from reading its entire (64-bit) address space.
+									Focusing on the fact that web browsers already provide a sandboxed environment for code execution, Apple has deployed countermeasures which do not thwart Spectre itself (because Spectre is a hardware problem), but make its weaponization for recovering secret data more difficult. Safari will normally put each tab into their own process, where Spectre cannot cross process boundaries. In addition, while high-resolution timers facilitate the inference of whether data are cached or not (for a cache side channel), they have been removed from browser environments. Safari also uses 35-bit addressing and poisoning techniques to prevent an attacker from crafting their own pointer and from reading its entire (64-bit) address space.
 								</p>
 								<p>
-									With iLeakage, we demonstrate these countermeasures are still insufficient against Spectre-based attacks in the browser. We introduce a new method to coerce Safari to have one process render more than one webpage. Then, we bypass the poisoning technique by exploiting a performance optimization where Safari changes other data instead of our fake pointer. We also bypass the 35-bit addressing scheme with a speculative type confusion attack. Here, we induce Safari's JavaScript engine to run a function for one datatype on a maliciously crafted datatype while the CPU is performing speculative execution. This function contains a 64-bit read, allowing us to read all of the address space. Finally, we devise a novel microarchitectural primitive to distinguish cache hits from misses despite having a coarse timer. Combining all of this, we show end-to-end attacks on popular websites.
+									With iLeakage, we demonstrate these countermeasures are still insufficient against Spectre-based attacks in the browser. We introduce a new method to coerce Safari to have one process render more than one webpage. Then, we bypass the poisoning technique by exploiting a performance optimization where Safari changes other data instead of our fake pointer. We also bypass the 35-bit addressing scheme with a speculative type confusion attack. More specifically, we induce Safari's JavaScript engine to run a function for one datatype on a maliciously crafted datatype while the CPU is performing speculative execution. This function contains a 64-bit read, allowing us to read all of the address space. Finally, we devise a novel microarchitectural primitive to distinguish cache hits from misses despite having a coarse timer. Combining all of this, we show end-to-end attacks on popular websites.
 								</p>
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<div class="container">
+					<h5 class="gray">Miscellaneous</h5>
+				</div>
+				<div class="accordion accordion-flush" id="miscellaneous" style="margin-top: -10px;">
 					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingOther">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -343,60 +373,39 @@
 						</div>
 					</div>
 					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingMitigation">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseMitigation" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseMitigation">
-								How can I defend against iLeakage?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseMitigation" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingMitigation">
-							<div class="accordion-body">
-								<p>
-									While we detail countermeasures in our paper (available at the top of this webpage), they must be implemented in Safari's JavaScript engine by Apple. Thus, there are two things you can do as a user. One is to keep your macOS and iOS versions up to date, and we recommend enabling automatic updates for this. Moreover, iLeakage is able to recover passwords and credit cards given that the target uses a credential manager with automatic autofill. If you use a credential manager, we recommend configuring it such that it requires user interaction or authentication before autofilling.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="container">
-					<h5 class="gray">Miscellaneous</h5>
-				</div>
-				<div class="accordion accordion-flush" id="miscellaneous" style="margin-top: -10px;">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingPoC">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapsePoC" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapsePoC">
-								Is there a proof-of-concept?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapsePoC" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingPoC">
-							<div class="accordion-body">
-								<p>Yes, please see our GitHub <a href="https://github.com/spookjs/spookjs-poc">repository</a>.</p>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingWhyattack">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseWhyattack" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseWhyattack">
-								Why did you attack Tumblr and LastPass?
+								Why was iLeakage evaluated against LastPass and Google Services?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseWhyattack" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingWhyattack">
 							<div class="accordion-body">
-								Our rationale for attacking Tumblr and LastPass simply arose from the fact that they are
-								a widely used website and Chrome extension respectively, and are likely to contain
-								sensitive information. As a disclaimer, we clarify that Spook.js exploits weaknesses in
-								the Strict Site Isolation mechanism of the Chrome browser, and does not rely on
-								vulnerabilities in either service. In particular, we do not discourage users from using
-								these services.
+								<p>
+									For Gmail, Google's login page and Messages by Google, our paper uses them as targets since they are high-value targets that contain sensitive information and are used by billions of users worldwide. We clarify that we did not discover any vulnerabilities in each website or Google's services. Furthermore, iLeakage itself can target nearly any website to recover data, and only exploits weaknesses we found in the Safari browser to do so. Thus, we do not intend to discourage users from using Google's services.
+								</p>
+								<p>
+									On the other hand, as we mentioned in Section 6 of the paper, we use LastPass as the credential manager for our evaluation due to its tendency to autofill credentials without user interaction once the user has manually opted to autofill them. This is in contrast to Safari's built-in password manager and other third-party managers such as Bitwarden, which require user interaction on each autofill event. Accordingly, iLeakage could recover the credentials as soon as a user opened the target webpage.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingPoC">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapsePoC" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapsePoC">
+								Do you have proof-of-concept code for iLeakage?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapsePoC" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingPoC">
+							<div class="accordion-body">
+								<p>
+								As we mention in Section 1.2 of our paper, we will coordinate the release of proof-of-concept attack code with Apple in the near future.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -405,24 +414,14 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseLogo" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseLogo">
-								Can I use the logo?
+								Is the logo free to use?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseLogo" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingLogo">
 							<div class="accordion-body">
 								<p>
-									Our Spook.js logo contains the logo of the Chromium project, which is
-									published under the
-									<a href="https://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 Generic</a>
-									(CC BY 2.5) license. We acknowledge that the Chromium logo belongs to
-									the Chromium project, maintained by Google. While we have not modified the
-									Chromium logo itself, we include it as a component of the Spook.js logo.
-								</p>
-								<p>
-									Accordingly, we release our logo under the same license. You can modify, redistribute, and copy it
-									freely. Logo (excluding the Chromium logo component) designed by Jason Kim (who had to teach himself a bit of
-									digital illustration just for it!)
+									According to <a href="https://commons.wikimedia.org/wiki/File:Safari_browser_logo.svg">Wikimedia Commons</a>, the Safari logo that we use as part of the iLeakage logo is in the public domain because "it does not meet the threshold of originality needed for copyright protection". Hence, we also release the iLeakage logo to the public domain. However, we note that the Safari branding itself is a <a href="https://www.apple.com/legal/intellectual-property/trademark/appletmlist.html">registered trademark of Apple Inc.</a>
 								</p>
 							</div>
 						</div>
