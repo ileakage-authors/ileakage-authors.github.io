@@ -43,7 +43,7 @@
 		<div class="jumbotron">
 			<div class="container">
 				<div class="row align-items-center" style="margin-bottom: 20px;">
-						<img src="img/ileakage.svg" class="mx-auto img-fluid" style="height: 70px;">
+						<img src="img/ileakage-faucet-leaking.svg" class="mx-auto img-fluid" style="height: 70px;">
 				</div>
 				<div class="row align-items-center">
 					<div class="col-sm-2"></div>
@@ -64,11 +64,11 @@
 				<div class="container">
 					<p>
 						We present iLeakage, a transient execution side channel attack targeting the <a
-							href="https://www.apple.com/safari/">Safari web browser</a> present on Macbooks, iPads and iPhones. We show how an attacker can induce Safari to render an arbitrary webpage, subsequently recovering sensitive information present within it using speculative execution. In particular, we demonstrate how Safari allows a malicious webpage to recover secrets from popular high-value targets, such as Gmail inbox content. Finally, we demonstrate the recovery of passwords, in case these are autofilled by credential managers. 
+							href="https://www.apple.com/safari/">Safari web browser</a> present on Macs, iPads and iPhones. We show how an attacker can induce Safari to render an arbitrary webpage, subsequently recovering sensitive information present within it using speculative execution. In particular, we demonstrate how Safari allows a malicious webpage to recover secrets from popular high-value targets, such as Gmail inbox content. Finally, we demonstrate the recovery of passwords, in case these are autofilled by credential managers. 
 					</p>
 					<p>
 					In order to construct iLeakage, we first reverse engineer the cache topology on <a 	href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs. 
-					We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us to distinguish invdevidual cache hits from cache misses, despite having access to only low resolution timers. After using our speculation-based gadget to construct eviction sets, we proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing and the value poisoning countermeasures, creating a primitive that can speculatively read and leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for consolidating websites from different domains into the same address space, we are able to mount a speculative type confusion attack in order to leak sensitive information.
+					We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us to distinguish individual cache hits from cache misses, despite having access to only low resolution timers. After using our speculation-based gadget to construct eviction sets, we proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing and the value poisoning countermeasures, creating a primitive that can speculatively read and leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for consolidating websites from different domains into the same address space, we are able to mount a speculative type confusion attack that leaks sensitive information.
 					</p>
 
 					<div class="row" style="padding-top: 10px; text-align: center;">
@@ -354,6 +354,11 @@
 									Many side channels, including ones we use for iLeakage, comes from the CPU's microarchitecture.
 									TODO HERE.
 									
+									Whenever attacker and target run on the same CPU, they share the CPU's internal resources such as core, cache, and internal buffers for forwarding data.
+
+									Sharing resources leads to contention, and patterns in contention leads to a fingerprint because resources that are under contention take longer time to acquire.
+									
+									Abusing this, the attacker can make inferences about what the target is doing on the same CPU even if they are isolated at the process level or the hypervisor level.
 								</p>
 							</div>
 						</div>
@@ -410,15 +415,14 @@
 									Since the original <a href="https://spectreattack.com/">Spectre</a> exploit, browser vendors had significantly hardened browsers against attacks based on speculative and transient execution. For the case of Safari, this includes 35-bit addressing and the value poisoning, one process per tab isolation policy, as well as a low resolution timer. 
 								</p>
 								<p>									
-									Nonetheless, iLeakage is the first demonstration of a speculative execution attack against "https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs and the Safari browser. 
+									Nonetheless, iLeakage is the first demonstration of a speculative execution attack against <a href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs and the Safari browser. 
 									In particular, we show that speculative execution attacks are possible on Apple's latest A-series and M-series architectures, despite Apple's side channel hardening. More specifically,
 									
 									TODO here, quick attack description, at most 5 sentances. Focus on microarch techniques, not security outcomes.
+								</p>
+								<p>
+									Shorten these 2 paragraphs into ~5 sentences.
 
-									
-									
-									
-									
 									In particular, we show that despite Apple's countermeasures, side channel attack
 									
 									Focusing on the fact that web browsers already provide a sandboxed environment for
