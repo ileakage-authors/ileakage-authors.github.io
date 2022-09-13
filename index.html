@@ -63,15 +63,12 @@
 						style="color: #002975;">iLeakage Attack.</span></h4>
 				<div class="container">
 					<p>
-						We present iLeakage, a transient execution side channel attack targeting <a
-							href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon CPUs</a> running the <a
-							href="https://www.apple.com/safari/">Safari web browser</a> on macOS or iOS. We show that an attacker can induce Safari to render an arbitrary target webpage using the same process as the attacker webpage with just one click, putting sensitive information in the target webpage at risk of being recovered by a <a href="https://spectreattack.com/">Spectre attack</a>.
+						We present iLeakage, a transient execution side channel attack targeting the <a
+							href="https://www.apple.com/safari/">Safari web browser</a> present on Macbooks, iPads and iPhones. We show how an attacker can induce Safari to render an arbitrary webpage, subsequently recovering sensitive information present within it using speculative execution. In particular, we demonstrate how Safari allows a malicious webpage to recover secrets from popular high-value targets, such as Gmail inbox content. Finally, we demonstrate the recovery of passwords, in case these are autofilled by credential managers. 
 					</p>
 					<p>
-						We show it is possible for malicious JavaScript and WebAssembly hosted on any
-						webpage to recover secrets from popular high-value targets such as someone's Gmail inbox or text messages on an Android phone connected
-						with Google Messages. In addition, when the target uses a credential manager with autofill, we
-						show iLeakage can recover login credentials.
+					In order to construct iLeakage, we first reverse engineer the cache topology on <a 	href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs. 
+					We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us to distinguish invdevidual cache hits from cache misses, despite having access to only low resolution timers. After using our speculation-based gadget to construct eviction sets, we proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing and the value poisoning countermeasures, creating a primitive that can speculatively read and leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for consolidating websites from different domains into the same address space, we are able to mount a speculative type confusion attack in order to leak sensitive information.
 					</p>
 
 					<div class="row" style="padding-top: 10px; text-align: center;">
@@ -98,7 +95,6 @@
 @inproceedings{ileakage,
 	title = {iLeakage: Browser-based Speculative Execution Attacks on Apple Devices},
 	author = {Jason Kim and Stephan van Schaik and Daniel Genkin},
-	booktitle = {TBD},
 	year = {2023},
 }
 		
@@ -213,7 +209,7 @@
 							<div class="accordion-body">
 								Yes (with a very high chance), if you have a device running macOS or iOS with Apple's
 								A-series or M-series CPUs. This includes all recent iPhones and iPads, as well as
-								Apple's laptops and desktops from 2020 and onwards.
+								Apple's laptops and desktops from 2020 and onwards. 
 							</div>
 						</div>
 					</div>
@@ -248,14 +244,9 @@
 							aria-labelledby="panelsStayOpen-headingMitigation">
 							<div class="accordion-body">
 								<p>
-									While we detail countermeasures in our paper (available at the top of this webpage),
-									they must be implemented in Safari's JavaScript engine by Apple. However, there are
-									two things you can do as a user. One is to keep your macOS and iOS versions up to
-									date, and we recommend enabling automatic updates for this. Moreover, iLeakage is
-									able to recover passwords and credit cards given that the target uses a credential
-									manager with automatic autofill. If you use a credential manager, we recommend
-									configuring it such that it requires user interaction or authentication before
-									autofilling.
+									While we detail countermeasures in our <a href="files/ileakage.pdf">paper</a>,
+									they must be implemented in Safari's JavaScript engine by Apple. Thus, we recommend that users keep their 
+									macOS and iOS versions up to date, such as by enabling automatic updates. We also recommend that users exercise caution when visiting untrusted websites.
 								</p>
 							</div>
 						</div>
@@ -306,9 +297,7 @@
 						<div id="panelsStayOpen-collapseStopPassword" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingStopPassword">
 							<div class="accordion-body">
-								Not for the most part. In fact, we encourage using credential managers since most of
-								them will generate strong and unique passwords for you for each account you have, while
-								requiring you to remember just one passphrase. In general, this is a better approach
+								Not for the most part. In fact, we encourage using credential managers as opposed to trying to remember all of your passwords. In general, this is a better approach
 								than reusing passwords or storing them insecurely. While iLeakage can recover
 								credentials that are autofilled into a webpage, we note that many platforms require user
 								interaction for autofill to occur.
@@ -362,13 +351,9 @@
 									throttling, just for a few examples.
 								</p>
 								<p>
-									Many side channels, including ones we use for iLeakage, comes from the CPU's cache.
-									The cache is a fast but small piece of memory which stores recently used data to
-									speed up repeated accesses. Notwithstanding the performance benefits, one can infer
-									if a target program has used that data by measuring the time to access it.
-									Accordingly, researchers have used cache side channels as a building block for
-									several transient execution attacks such as Spectre. In turn, iLeakage uses Spectre
-									as a building block.
+									Many side channels, including ones we use for iLeakage, comes from the CPU's microarchitecture.
+									TODO HERE.
+									
 								</p>
 							</div>
 						</div>
@@ -378,7 +363,7 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseSpectre" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseSpectre">
-								What are Speculative Execution and Spectre?
+								What are Speculative Execution Attacks?
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseSpectre" class="accordion-collapse collapse"
@@ -422,6 +407,20 @@
 							aria-labelledby="panelsStayOpen-headingDifference">
 							<div class="accordion-body">
 								<p>
+									Since the original <a href="https://spectreattack.com/">Spectre</a> exploit, browser vendors had significantly hardened browsers against attacks based on speculative and transient execution. For the case of Safari, this includes 35-bit addressing and the value poisoning, one process per tab isolation policy, as well as a low resolution timer. 
+								</p>
+								<p>									
+									Nonetheless, iLeakage is the first demonstration of a speculative execution attack against "https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs and the Safari browser. 
+									In particular, we show that speculative execution attacks are possible on Apple's latest A-series and M-series architectures, despite Apple's side channel hardening. More specifically,
+									
+									TODO here, quick attack description, at most 5 sentances. Focus on microarch techniques, not security outcomes.
+
+									
+									
+									
+									
+									In particular, we show that despite Apple's countermeasures, side channel attack
+									
 									Focusing on the fact that web browsers already provide a sandboxed environment for
 									code execution, Apple has deployed countermeasures which do not thwart Spectre
 									itself (because Spectre is a hardware problem), but make its weaponization for
@@ -481,38 +480,6 @@
 						</div>
 					</div>
 					<div class="accordion-item">
-						<h2 class="accordion-header" id="panelsStayOpen-headingWhyattack">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-								data-bs-target="#panelsStayOpen-collapseWhyattack" aria-expanded="false"
-								aria-controls="panelsStayOpen-collapseWhyattack">
-								Why was iLeakage evaluated against LastPass and Google Services?
-							</button>
-						</h2>
-						<div id="panelsStayOpen-collapseWhyattack" class="accordion-collapse collapse"
-							aria-labelledby="panelsStayOpen-headingWhyattack">
-							<div class="accordion-body">
-								<p>
-									For Gmail, Google's login page and Messages by Google, our paper uses them as
-									targets since they are high-value targets that contain sensitive information and are
-									used by billions of users worldwide. We clarify that we did not discover any
-									vulnerabilities in each website or Google's services. Furthermore, iLeakage itself
-									can target nearly any website to recover data, and only exploits weaknesses we found
-									in the Safari browser to do so. Thus, we do not intend to discourage users from
-									using Google's services.
-								</p>
-								<p>
-									On the other hand, as we mentioned in Section 6 of the paper, we use LastPass as the
-									credential manager for our evaluation due to its tendency to autofill credentials
-									without user interaction once the user has manually opted to autofill them. This is
-									in contrast to Safari's built-in password manager and other third-party managers
-									such as Bitwarden, which require user interaction on each autofill event.
-									Accordingly, iLeakage could recover the credentials as soon as a user opened the
-									target webpage.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingPoC">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapsePoC" aria-expanded="false"
@@ -542,14 +509,7 @@
 							aria-labelledby="panelsStayOpen-headingLogo">
 							<div class="accordion-body">
 								<p>
-									According to <a
-										href="https://commons.wikimedia.org/wiki/File:Safari_browser_logo.svg">Wikimedia
-										Commons</a>, the Safari logo that we use as part of the iLeakage logo is in the
-									public domain because "it does not meet the threshold of originality needed for
-									copyright protection". Hence, we also release the iLeakage logo to the public
-									domain. However, we note that the Safari branding itself is a <a
-										href="https://www.apple.com/legal/intellectual-property/trademark/appletmlist.html">registered
-										trademark of Apple Inc.</a>
+									TODO here, answer is yes. Provide PNG and SVG.
 								</p>
 							</div>
 						</div>
