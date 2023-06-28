@@ -48,7 +48,7 @@
 				<div class="row align-items-center">
 					<div class="col-sm-12">
 						<h1 class="description text-center">iLeakage: <span style="color: #636363;">Browser-based
-								Speculative Execution Attacks on Apple Devices</span></h1>
+								Timerless Speculative Execution Attacks on Apple Devices</span></h1>
 					</div>
 				</div>
 				<div style="background-color: black; height: 5px; margin-top: 30px;"></div>
@@ -74,7 +74,8 @@
 							href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs.
 						We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us
 						to distinguish individual cache hits from cache misses, despite having access to only low
-						resolution timers. After using our speculation-based gadget to construct eviction sets, we
+						resolution timers. We also demonstrate a variant of this gadget that uses no timers, leveraging race conditions instead.
+						After using our speculation-based gadget to construct eviction sets, we
 						proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing
 						and the value poisoning countermeasures, creating a primitive that can speculatively read and
 						leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for
@@ -104,8 +105,9 @@
 									<textarea class="form-control rounded-0" id="citeTextarea" rows="8" readonly>
 
 @inproceedings{ileakage,
-	title = {iLeakage: Browser-based Speculative Execution Attacks on Apple Devices},
-	author = {Jason Kim and Stephan van Schaik and Daniel Genkin},
+	title = {iLeakage: Browser-based Timerless Speculative Execution Attacks on Apple Devices},
+	author = {Jason Kim and Stephan van Schaik and Daniel Genkin and Yuval Yarom},
+	booktitle = {ACM CCS 2023},
 	year = {2023},
 }
 		
