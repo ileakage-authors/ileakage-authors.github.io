@@ -77,21 +77,6 @@
 						targets, such as Gmail inbox content. Finally, we demonstrate the recovery of passwords, in case
 						these are autofilled by credential managers.
 					</p>
-					<p>
-						<!-- How does iLeakage work? (For tech-savvy readers) -->
-						In order to construct iLeakage, we first reverse engineer the cache topology on <a
-							href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs.
-						We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us
-						to distinguish individual cache hits from cache misses, despite having access to only low
-						resolution timers. We also demonstrate a variant of this gadget that uses no timers, leveraging
-						race conditions instead.
-						After using our speculation-based gadget to construct eviction sets, we
-						proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing
-						and the value poisoning countermeasures, creating a primitive that can speculatively read and
-						leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for
-						consolidating websites from different domains into the same address space, we are able to mount
-						a speculative type confusion attack that leaks sensitive information.
-					</p>
 
 					<div class="row" style="padding-top: 10px; text-align: center;">
 						<div class="col-xs-12 button-wrapper">
@@ -549,6 +534,34 @@
 									maliciously crafted object of the wrong type while the CPU is performing speculative
 									execution. Ultimately, we achieve a out-of-bounds read anywhere in the address space
 									of Safari's rendering process.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingWorks">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseWorks" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseWorks">
+								How does iLeakage work?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseWorks" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingWorks">
+							<div class="accordion-body">
+								<p>
+									In order to construct iLeakage, we first reverse engineer the cache topology on <a
+										href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs.
+									We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us
+									to distinguish individual cache hits from cache misses, despite having access to only low
+									resolution timers. We also demonstrate a variant of this gadget that uses no timers, leveraging
+									race conditions instead.
+									After using our speculation-based gadget to construct eviction sets, we
+									proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing
+									and the value poisoning countermeasures, creating a primitive that can speculatively read and
+									leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for
+									consolidating websites from different domains into the same address space, we are able to mount
+									a speculative type confusion attack that leaks sensitive information.
 								</p>
 							</div>
 						</div>
