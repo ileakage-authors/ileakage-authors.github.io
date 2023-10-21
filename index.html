@@ -2,7 +2,14 @@
 <html lang="en">
 
 	<head>
-		<!-- TODO Google Analytics header -->
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MMBFLWKH06"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			gtag('config', 'G-MMBFLWKH06');
+		</script>
 		<script>
 			function copy_to_clipboard() {
 				/* Get the text field */
@@ -76,7 +83,8 @@
 							href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs.
 						We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us
 						to distinguish individual cache hits from cache misses, despite having access to only low
-						resolution timers. We also demonstrate a variant of this gadget that uses no timers, leveraging race conditions instead.
+						resolution timers. We also demonstrate a variant of this gadget that uses no timers, leveraging
+						race conditions instead.
 						After using our speculation-based gadget to construct eviction sets, we
 						proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing
 						and the value poisoning countermeasures, creating a primitive that can speculatively read and
@@ -194,9 +202,9 @@
 										class="badge badge-gatech"><a class="univ"
 											href="https://www.gatech.edu/">Georgia Institute of Technology</a></span>
 								</li>
-								<li><a href="https://yuval.yarom.org/">Yuval Yarom</a> <span
-										class="badge badge-rub"><a class="univ"
-											href="https://www.ruhr-uni-bochum.de/">Ruhr University Bochum</a></span></li>
+								<li><a href="https://yuval.yarom.org/">Yuval Yarom</a> <span class="badge badge-rub"><a
+											class="univ" href="https://www.ruhr-uni-bochum.de/">Ruhr University
+											Bochum</a></span></li>
 							</ul>
 						</div>
 						<div class="col-md-1"></div>
@@ -287,43 +295,71 @@
 									If you wish to enable the mitigation on your Mac now, below are the steps:
 								</p>
 								<p>
-									<b>If you have updated to macOS Sonoma:</b> 
+									<b>If you have updated to macOS Sonoma:</b>
 								</p>
 								<ol>
-									<li>Open the Terminal app. You can find this in the Launchpad, or through Spotlight search.</li>
-									<li>Copy and paste the following command (in magenta), and press the Return key to run it: <br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 1</code>.</li>
+									<li>Open the Terminal app. You can find this in the Launchpad, or through Spotlight
+										search.</li>
+									<li>Copy and paste the following command (in magenta), and press the Return key to
+										run it:
+										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 1</code>.
+									</li>
 								</ol>
 								<p>
 									<b>If you are on an earlier macOS version (macOS Ventura and earlier):</b>
 								</p>
 								<ol>
-									<li>We recommend enabling automatic updates and updating to macOS Sonoma. However, if you wish to enable the mitigation on older macOS versions, follow these steps:</li>
-									<li>First, download the version of Safari Technology Preview tht matches your macOS version from Apple's <a href="https://developer.apple.com/safari/resources/">download page.</a></li>
-									<li>Double-click the downloaded installer with the <code>.pkg</code> file extension, and follow its directions until Safari Technology Preview is installed.</li>
-									<li>Open the Terminal app. You can find this in the Launchpad, or through Spotlight search.</li>
-									<li>Copy and paste the following command (in magenta), and press the Return key to run it: <br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 1</code>.</li>
+									<li>We recommend enabling automatic updates and updating to macOS Sonoma. However,
+										if you wish to enable the mitigation on older macOS versions, follow these
+										steps:</li>
+									<li>First, download the version of Safari Technology Preview tht matches your macOS
+										version from Apple's <a
+											href="https://developer.apple.com/safari/resources/">download page.</a></li>
+									<li>Double-click the downloaded installer with the <code>.pkg</code> file extension,
+										and follow its directions until Safari Technology Preview is installed.</li>
+									<li>Open the Terminal app. You can find this in the Launchpad, or through Spotlight
+										search.</li>
+									<li>Copy and paste the following command (in magenta), and press the Return key to
+										run it:
+										<br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 1</code>.
+									</li>
 								</ol>
 								<p>
 									<b>This enables Safari's hidden debugging menu. Then, follow these steps:</b>
 								</p>
 								<ol>
-									<li>Open Safari (or Safari Technology Preview). On the menu bar, you should see a new entry named <b>Debug</b>. <br><img class="img-fluid mitigation" src="img/debug-menu.png" alt="Hidden debug menu"
-										style="max-height: 50px;" /></li>
-									<li>Click the Debug menu. This opens a long dropdown. Click on <b>WebKit Internal Features</b>. <br><img class="img-fluid mitigation" src="img/webkit-internal.png" alt="WebKit internal features"
-										style="max-height: 500px;" /></li>
-									<li>This opens another long dropdown to the side. Scroll down to the bottom of this new dropdown, where you'll find an entry called <b>Swap Processes on Cross-Site Window Open</b>. <br><img class="img-fluid mitigation" src="img/pson.png" alt="Swap processes on cross-site window.open"
-										style="max-height: 500px;" /></li>
-									<li>Click this entry. A checkmark should appear to the left of it, like the screenshot below. <br><img class="img-fluid mitigation" src="img/pson-enabled.png" alt="Mitigation enabled"
-										style="max-height: 500px;" /></li>
+									<li>Open Safari (or Safari Technology Preview). On the menu bar, you should see a
+										new entry named <b>Debug</b>. <br><img class="img-fluid mitigation"
+											src="img/debug-menu.png" alt="Hidden debug menu"
+											style="max-height: 50px;" /></li>
+									<li>Click the Debug menu. This opens a long dropdown. Click on <b>WebKit Internal
+											Features</b>. <br><img class="img-fluid mitigation"
+											src="img/webkit-internal.png" alt="WebKit internal features"
+											style="max-height: 500px;" /></li>
+									<li>This opens another long dropdown to the side. Scroll down to the bottom of this
+										new dropdown, where you'll find an entry called <b>Swap Processes on Cross-Site
+											Window Open</b>. <br><img class="img-fluid mitigation" src="img/pson.png"
+											alt="Swap processes on cross-site window.open" style="max-height: 500px;" />
+									</li>
+									<li>Click this entry. A checkmark should appear to the left of it, like the
+										screenshot below. <br><img class="img-fluid mitigation"
+											src="img/pson-enabled.png" alt="Mitigation enabled"
+											style="max-height: 500px;" /></li>
 								</ol>
 								<p>
-									Afterwards, you're all set! To disable the mitigation, repeat steps 1-4 from above, and the checkmark will disappear.
-									To disable the hidden debugging menu, open the Terminal app, copy and paste the following command (depending on your OS version), and press the Return key to run.
-									The changes will apply the next time you start Safari (or Safari Technology Preview). 
+									Afterwards, you're all set! To disable the mitigation, repeat steps 1-4 from above,
+									and the checkmark will disappear.
+									To disable the hidden debugging menu, open the Terminal app, copy and paste the
+									following command (depending on your OS version), and press the Return key to run.
+									The changes will apply the next time you start Safari (or Safari Technology
+									Preview).
 								</p>
 								<ul>
-									<li>For Safari (macOS Sonoma): <br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 0</code></li>
-									<li>For Safari Technology Preview (macOS Ventura and earlier): <br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 0</code></li>
+									<li>For Safari (macOS Sonoma):
+										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 0</code></li>
+									<li>For Safari Technology Preview (macOS Ventura and earlier):
+										<br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 0</code>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -529,8 +565,10 @@
 							aria-labelledby="panelsStayOpen-headingPaper">
 							<div class="accordion-body">
 								<p>
-									The download button at the top of this website links to an academic paper, also available through this <a href="files/ileakage.pdf">link.</a>
-									Our paper will appear at the 2023 ACM Conference on Computer and Communications Security (CCS).
+									The download button at the top of this website links to an academic paper, also
+									available through this <a href="files/ileakage.pdf">link.</a>
+									Our paper will appear at the 2023 ACM Conference on Computer and Communications
+									Security (CCS).
 								</p>
 							</div>
 						</div>
@@ -600,8 +638,10 @@
 						This research was supported by
 						the Air Force Office of Scientific Research (AFOSR) under award number FA9550-20-1-0425;
 						an ARC Discovery Project number DP210102670;
-						the Defense Advanced Research Projects Agency (DARPA) under contract HR00112390029 and W912CG-23-C-0022;
-						the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy - EXC 2092 CASA - 390781972;
+						the Defense Advanced Research Projects Agency (DARPA) under contract HR00112390029 and
+						W912CG-23-C-0022;
+						the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence
+						Strategy - EXC 2092 CASA - 390781972;
 						the National Science Foundation under grant CNS-1954712;
 						and gifts by Cisco and Qualcomm.
 						<br>
@@ -611,7 +651,8 @@
 						either expressed or implied, of the U.S. Government.
 						<br>
 						<br>
-						Parts of this work were undertaken while Yuval Yarom was affiliated with the University of Adelaide. 
+						Parts of this work were undertaken while Yuval Yarom was affiliated with the University of
+						Adelaide.
 					</p>
 				</div>
 			</section>
