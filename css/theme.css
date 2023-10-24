@@ -17,6 +17,11 @@ a {
 	text-decoration: none;
 }
 
+.fail {
+	color: #b1060e;
+	font-family: 'Poppins';
+}
+
 .gray {
 	color: #636363;
 }
