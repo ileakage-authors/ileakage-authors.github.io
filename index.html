@@ -369,6 +369,26 @@
 						</div>
 					</div>
 					<div class="accordion-item">
+						<h2 class="accordion-header" id="panelsStayOpen-headingLockdown">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+								data-bs-target="#panelsStayOpen-collapseLockdown" aria-expanded="false"
+								aria-controls="panelsStayOpen-collapseLockdown">
+								Does enabling Lockdown Mode or disabling JavaScript mitigate iLeakage?
+							</button>
+						</h2>
+						<div id="panelsStayOpen-collapseLockdown" class="accordion-collapse collapse"
+							aria-labelledby="panelsStayOpen-headingLockdown">
+							<div class="accordion-body">
+								<p>									
+									Lockdown Mode does mitigate our work by disabling just-in-time (JIT) compilation in Safari, which is a performance feature used by iLeakage to build its attack primitives. However, Lockdown Mode changes device behavior in other aspects. For example, some message attachments and unknown FaceTime calls may be blocked. See Apple's <a href="https://support.apple.com/en-us/HT212650">documentation</a> for a complete list.
+								</p>
+								<p>
+									Furthermore, since iLeakage is written in JavaScript, disabling it also mitigates our work. However, disabling JavaScript may cause Safari to render some websites incorrectly or incompletely, and some advanced web features such as online payments may not work.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
 						<h2 class="accordion-header" id="panelsStayOpen-headingDetect">
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseDetect" aria-expanded="false"
