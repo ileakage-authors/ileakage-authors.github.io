@@ -285,14 +285,15 @@
 									in Safari. However, this mitigation is not enabled by default, and enabling it
 									is possible only on macOS. Furthermore, it is marked as unstable.
 									We will keep this FAQ updated as Apple pushes more iOS and macOS updates.
-									If you wish to enable the mitigation on your Mac now, below are the steps:
+									If you wish to enable the mitigation on your Mac now, below are the steps.
+									<b>Please note: this mitigation is compatible only with macOS Ventura 13.0 and higher.</b>
 								</p>
 								<p>
 									<b>First, the Terminal app needs full disk access:</b>
 								</p>
 								<ol>
-									<li>Open the System Settings app (macOS Ventura 13.0 and higher) or System Preferences app (macOS Monterey 12.7 and lower), which is likely to be on your Dock. You can also find the app in the Launchpad or Spotlight search.</li>
-									<li>Navigate to the Privacy & Security tab (macOS Ventura 13.0 and higher); or, the Security & Privacy icon followed by the Privacy tab (macOS Monterey 12.7 and lower).</li>
+									<li>Open the System Settings app, which is likely to be on your Dock. You can also find the app in the Launchpad or Spotlight search.</li>
+									<li>Navigate to the Privacy & Security tab.</li>
 									<li>Click the menu item for Full Disk Access, and then the '+' button. You may be prompted for your credentials here.</li>
 									<li>A Finder window will appear. Select Applications on the sidebar to the left, and scroll near the bottom of the list to find a folder named Utilities.</li>
 									<li>Within the Utilities folder is the Terminal app. Click on it, followed by the Open button in Finder.</li>
@@ -309,7 +310,7 @@
 									</li>
 								</ol>
 								<p>
-									<b>If you are on an earlier macOS version (macOS Ventura 13.6 and lower):</b>
+									<b>If you are on an earlier macOS version (macOS Ventura 13.0 to 13.6):</b>
 								</p>
 								<ol>
 									<li>We recommend enabling automatic updates and updating to macOS Sonoma. However,
@@ -360,7 +361,7 @@
 								<ul>
 									<li>For Safari (macOS Sonoma 14.0 and higher):
 										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 0</code></li>
-									<li>For Safari Technology Preview (macOS Ventura 13.6 and lower):
+									<li>For Safari Technology Preview (macOS Ventura 13.0 to 13.6):
 										<br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 0</code>
 									</li>
 								</ul>
