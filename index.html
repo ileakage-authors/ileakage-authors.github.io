@@ -72,8 +72,10 @@
 						<!-- After first sentence, emphasize how Spectre is still alive and kicking nearly 6 years after release -->
 						We present iLeakage, a transient execution side channel targeting the <a
 							href="https://www.apple.com/safari/">Safari web browser</a> present on Macs, iPads and
-						iPhones. iLeakage shows that the <a href="https://spectreattack.com/">Spectre</a> attack is still
-						relevant and exploitable, even after nearly 6 years of effort to mitigate it since its discovery.
+						iPhones. iLeakage shows that the <a href="https://spectreattack.com/">Spectre</a> attack is
+						still
+						relevant and exploitable, even after nearly 6 years of effort to mitigate it since its
+						discovery.
 						We show how an attacker can induce Safari to render an arbitrary webpage, subsequently
 						recovering sensitive information present within it using speculative execution. In particular,
 						we demonstrate how Safari allows a malicious webpage to recover secrets from popular high-value
@@ -196,7 +198,8 @@
 							</ul>
 						</div>
 						<div class="col-md-8">
-							<h2 style="text-align: center;"><b><a class="fail" href="https://architecture.fail/">architecture.fail</a></b></h2>
+							<h2 style="text-align: center;"><b><a class="fail"
+										href="https://architecture.fail/">architecture.fail</a></b></h2>
 							<p style="text-align: center;">Check out our lab website!</p>
 						</div>
 					</div>
@@ -286,17 +289,22 @@
 									is possible only on macOS. Furthermore, it is marked as unstable.
 									We will keep this FAQ updated as Apple pushes more iOS and macOS updates.
 									If you wish to enable the mitigation on your Mac now, below are the steps.
-									<b>Please note: this mitigation is compatible only with macOS Ventura 13.0 and higher.</b>
+									<b>Please note: this mitigation is compatible only with macOS Ventura 13.0 and
+										higher.</b>
 								</p>
 								<p>
 									<b>First, the Terminal app needs full disk access:</b>
 								</p>
 								<ol>
-									<li>Open the System Settings app, which is likely to be on your Dock. You can also find the app in the Launchpad or Spotlight search.</li>
+									<li>Open the System Settings app, which is likely to be on your Dock. You can also
+										find the app in the Launchpad or Spotlight search.</li>
 									<li>Navigate to the Privacy & Security tab.</li>
-									<li>Click the menu item for Full Disk Access, and then the '+' button. You may be prompted for your credentials here.</li>
-									<li>A Finder window will appear. Select Applications on the sidebar to the left, and scroll near the bottom of the list to find a folder named Utilities.</li>
-									<li>Within the Utilities folder is the Terminal app. Click on it, followed by the Open button in Finder.</li>
+									<li>Click the menu item for Full Disk Access, and then the '+' button. You may be
+										prompted for your credentials here.</li>
+									<li>A Finder window will appear. Select Applications on the sidebar to the left, and
+										scroll near the bottom of the list to find a folder named Utilities.</li>
+									<li>Within the Utilities folder is the Terminal app. Click on it, followed by the
+										Open button in Finder.</li>
 								</ol>
 								<p>
 									<b>If you have updated to macOS Sonoma 14.0 or higher:</b>
@@ -360,7 +368,8 @@
 								</p>
 								<ul>
 									<li>For Safari (macOS Sonoma 14.0 and higher):
-										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 0</code></li>
+										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 0</code>
+									</li>
 									<li>For Safari Technology Preview (macOS Ventura 13.0 to 13.6):
 										<br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 0</code>
 									</li>
@@ -379,11 +388,19 @@
 						<div id="panelsStayOpen-collapseLockdown" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingLockdown">
 							<div class="accordion-body">
-								<p>									
-									Lockdown Mode does mitigate our work by disabling just-in-time (JIT) compilation in Safari, which is a performance feature used by iLeakage to build its attack primitives. However, Lockdown Mode changes device behavior in other aspects. For example, some message attachments and unknown FaceTime calls may be blocked. See Apple's <a href="https://support.apple.com/en-us/HT212650">documentation</a> for a complete list.
+								<p>
+									Lockdown Mode does mitigate our work by disabling just-in-time (JIT) compilation in
+									Safari, which is a performance feature used by iLeakage to build its attack
+									primitives. However, Lockdown Mode changes device behavior in other aspects. For
+									example, some message attachments and unknown FaceTime calls may be blocked. See
+									Apple's <a href="https://support.apple.com/en-us/HT212650">documentation</a> for a
+									complete list.
 								</p>
 								<p>
-									Furthermore, since iLeakage is written in JavaScript, disabling it also mitigates our work. However, disabling JavaScript may cause Safari to render some websites incorrectly or incompletely, and some advanced web features such as online payments may not work.
+									Furthermore, since iLeakage is written in JavaScript, disabling it also mitigates
+									our work. However, disabling JavaScript may cause Safari to render some websites
+									incorrectly or incompletely, and some advanced web features such as online payments
+									may not work.
 								</p>
 							</div>
 						</div>
@@ -453,7 +470,8 @@
 						<div id="panelsStayOpen-collapseNotify" class="accordion-collapse collapse"
 							aria-labelledby="panelsStayOpen-headingNotify">
 							<div class="accordion-body">
-								We disclosed our results to Apple on September 12, 2022 (408 days before public release).
+								We disclosed our results to Apple on September 12, 2022 (408 days before public
+								release).
 							</div>
 						</div>
 					</div>
@@ -606,15 +624,22 @@
 								<p>
 									In order to construct iLeakage, we first reverse engineer the cache topology on <a
 										href="https://en.wikipedia.org/wiki/Apple_silicon">Apple Silicon</a> CPUs.
-									We then overcome Apple's timer limitations using a new speculation-based gadget, which allows us
-									to distinguish individual cache hits from cache misses, despite having access to only low
-									resolution timers. We also demonstrate a variant of this gadget that uses no timers, leveraging
+									We then overcome Apple's timer limitations using a new speculation-based gadget,
+									which allows us
+									to distinguish individual cache hits from cache misses, despite having access to
+									only low
+									resolution timers. We also demonstrate a variant of this gadget that uses no timers,
+									leveraging
 									race conditions instead.
 									After using our speculation-based gadget to construct eviction sets, we
-									proceded to analyze Safari's side channel resilience. Here, we bypass Safari's 35-bit addressing
-									and the value poisoning countermeasures, creating a primitive that can speculatively read and
-									leak any 64-bit pointer within Safari's rendering process. Combining this with a new method for
-									consolidating websites from different domains into the same address space, we are able to mount
+									proceded to analyze Safari's side channel resilience. Here, we bypass Safari's
+									35-bit addressing
+									and the value poisoning countermeasures, creating a primitive that can speculatively
+									read and
+									leak any 64-bit pointer within Safari's rendering process. Combining this with a new
+									method for
+									consolidating websites from different domains into the same address space, we are
+									able to mount
 									a speculative type confusion attack that leaks sensitive information.
 								</p>
 							</div>
@@ -698,8 +723,128 @@
 				</div>
 
 			</section>
+			<section id="news">
+				<h4><i class="fa fa-newspaper-o" style="padding-right: 10px;"></i>iLeakage in the News.</h4>
+				<ul>
+					<li>
+						<img class="news"
+							src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Ars_Technica_logo_%282016%29.svg/640px-Ars_Technica_logo_%282016%29.svg.png">
+						<a
+							href="https://arstechnica.com/security/2023/10/hackers-can-force-ios-and-macos-browsers-to-divulge-passwords-and-a-whole-lot-more/">Hackers
+							can force iOS and macOS browsers to divulge passwords and much more</a>
+					</li>
+					<li>
+						<img class="news" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/PCMag_logo.svg/638px-PCMag_logo.svg.png">
+						<a
+							href="https://www.pcmag.com/news/ileakage-flaw-can-prompt-apples-safari-to-expose-passwords-sensitive-data">'iLeakage'
+							Flaw Can Prompt Apple's Safari to Expose Passwords, Sensitive Data</a>
+					</li>
+					<li>
+						<img class="news" src="https://images.crunchbase.com/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/v1448602321/t6loybjsqbgthtxi859l.png">
+						<a
+							href="https://www.theregister.com/2023/10/26/ileakage_apple_exploit/">Side channel attacks
+							take bite out of Apple silicon with iLeakage exploit</a>
+					</li>
+					<li>
+						<img class="news" src="https://www.bleepstatic.com/logo/bleepingcomputer-logo.png">
+						<a
+							href="https://www.bleepingcomputer.com/news/security/new-ileakage-attack-steals-emails-passwords-from-apple-safari/">New
+							iLeakage attack steals emails, passwords from Apple Safari</a>
+					</li>
+					<li>
+						<img class="news" src="https://upload.wikimedia.org/wikipedia/commons/e/e6/9to5Mac_Logo.jpg">
+						<a href="https://9to5mac.com/2023/10/26/ileakage/">iLeakage flaw could force
+							iPhones and Macs to divulge passwords and more</a>
+					</li>
+					<li>
+						<img class="news" src="https://s.yimg.com/os/creatr-uploaded-images/2022-08/0f550920-295a-11ed-bffb-cbfc786734bb">
+						<a
+							href="https://www.tomsguide.com/news/new-ileakage-attack-can-steal-your-emails-and-passwords-on-iphones-and-macs-how-to-stay-safe">New
+							iLeakage attack can steal your emails and passwords on iPhone and Mac — how to stay safe</a>
+					</li>
+					<li>
+						<img class="news" src="https://www.securityweek.com/sites/default/files/logos/SecurityWeek-Logo.jpeg">
+						<a
+							href="https://www.securityweek.com/ileakage-attack-exploits-safari-to-steal-sensitive-data-from-macs-iphones/">iLeakage
+							Attack Exploits Safari to Steal Sensitive Data From Macs, iPhones</a>
+					</li>
+					<li>
+						<img class="news" src="https://www.bigabid.com/wp-content/uploads/2021/04/Apple-Insider-logo.png">
+						<a
+							href="https://appleinsider.com/articles/23/10/25/ileakage-attack-resurrects-spectre-with-password-and-website-data-extraction">iLeakage
+							attack resurrects Spectre with password and website data extraction</a>
+					</li>
+					<li>
+						<img class="news" src="https://cdnp1.stackassets.com/e4c9d45ac2ed3b36d7f566e38921faca9ff2177a/store/6eeffe5fc60124a41358ee4f45bbb14d10c36fcc4f94d08e5871dae06bc9/233_logo-mobile.png">
+						<a
+							href="https://thehackernews.com/2023/10/ileakage-new-safari-exploit-impacts.html">iLeakage:
+							New Safari Exploit Impacts Apple iPhones and Macs with A- and M-Series CPUs</a>
+					</li>
+					<li>
+						<img class="news" src="https://mma.prnewswire.com/media/627563/TechRadar_Logo.jpg?p=twitter">
+						<a
+							href="https://www.techradar.com/pro/security/this-dangerous-new-ios-and-macos-security-flaw-might-see-you-give-up-your-password-without-knowing">iPhone
+							and Mac users beware - this dangerous new iOS and macOS security flaw might see you give up
+							your password without knowing</a>
+					</li>
+					<li>
+						<img class="news" src="https://www.techworm.net/wp-content/uploads/2019/08/TECHWORM-TOP-LOGO.png" style="background-color: black;">
+						<a
+							href="https://www.techworm.net/2023/10/ileakage-attack-can-force-apple-safari-to-reveal-passwords.html">‘iLeakage’
+							Attack Can Force Apple Safari To Reveal Passwords</a>
+					</li>
+					<li>
+						<img class="news" src="https://ioshacker.com/wp-content/uploads/2020/09/ioshacker-logo-white-1.png" style="background-color: black;">
+						<a
+							href="https://ioshacker.com/news/ileakage-vulnerability-found-in-apple-silicon-can-leak-passwords-to-attackers">iLeakage
+							Vulnerability Found In Apple Silicon Can Leak Passwords To Attackers</a>
+					</li>
+					<li>
+						<img class="news" src="https://assets.extrahop.com/images/blogart/security-boulevard.png">
+						<a
+							href="https://securityboulevard.com/2023/10/ileakage-apple-vulnerable-richixbw/">#iLeakage:
+							All Apple CPUs Vulnerable — No Patch in Sight</a>
+					</li>
+					<li>
+						<img class="news" src="https://www.fudzilla.com/images/fudzilla_logo_new.png" style="background-color: #2f4356;">
+						<a
+							href="https://www.fudzilla.com/news/57828-boffins-declare-open-season-on-apple-safari">Boffins
+							declare open season on Apple Safari</a>
+					</li>
+					<li>
+						<img class="news" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Tweakers_logo.svg/640px-Tweakers_logo.svg.png">
+						<a
+							href="https://tweakers.net/nieuws/214992/onderzoekers-vinden-spectre-achtig-lek-in-safari-dat-wachtwoorden-kan-vrijgeven.html">Onderzoekers
+							vinden Spectre-achtig lek in Safari dat wachtwoorden kan vrijgeven</a>
+					</li>
+					<li>
+						<img class="news" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Computerbase_Logo.svg/320px-Computerbase_Logo.svg.png">
+						<a
+							href="https://www.computerbase.de/2023-10/ileakage-x-safari-spectre-nun-auch-bei-apple-cpus-ein-thema/">iLeakage
+							× Safari: Spectre nun auch bei Apple-CPUs ein Thema</a>
+					</li>
+					<li>
+						<img class="news" src="https://www.techzine.eu/wp-content/uploads/2019/09/logo.png">
+						<a
+							href="https://www.techzine.eu/news/security/112597/apple-processors-vulnerable-to-sensitive-data-leaks/">Apple
+							processors vulnerable to sensitive data leaks</a>
+					</li>
+					<li>
+						<img class="news" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Logo_heise_online_2023.svg/640px-Logo_heise_online_2023.svg.png">
+						<a
+							href="https://www.heise.de/news/iLeakage-Schutz-vor-Spectre-Seitenkanalangriff-in-Safari-unzureichend-9344659.html">iLeakage:
+							Safari unzureichend vor Spectre-Seitenkanalangriff geschützt</a>
+					</li>
+					<li>
+						<img class="news" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Malwarebytes_Logo_and_Wordmark_%282016%29.svg/640px-Malwarebytes_Logo_and_Wordmark_%282016%29.svg.png">
+						<a
+							href="https://www.malwarebytes.com/blog/news/2023/10/ileakage">Patch...later? Safari
+							iLeakage bug not fixed</a>
+					</li>
+				</ul>
+			</section>
 			<section id="acknowledgments">
-				<h4><i class="fa fa-bookmark" style="padding-right: 10px;"></i>Acknowledgments</h4>
+				<h4><i class="fa fa-bookmark" style="padding-right: 10px;"></i>Acknowledgments.</h4>
 				<div class="block">
 					<p>
 						This research was supported by

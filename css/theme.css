@@ -22,6 +22,12 @@ a {
 	font-family: 'Poppins';
 }
 
+.news {
+	max-height: 40px;
+	max-width: 150px;
+	margin-right: 10px;
+}
+
 .gray {
 	color: #636363;
 }
