@@ -292,96 +292,11 @@
 							aria-labelledby="panelsStayOpen-headingMitigation">
 							<div class="accordion-body">
 								<p>
-									At the time of public release, Apple has implemented a mitigation for iLeakage
-									in Safari. However, this mitigation is not enabled by default, and enabling it
-									is possible only on macOS. Furthermore, it is marked as unstable.
-									We will keep this FAQ updated as Apple pushes more iOS and macOS updates.
-									If you wish to enable the mitigation on your Mac now, below are the steps.
-									<b>Please note: this mitigation is compatible only with macOS Ventura 13.0 and
-										higher.</b>
+									<b>Update as of January 10, 2024:</b> Apple has released Safari Technology Preview 186 for macOS Sonoma (14) and Ventura (13). After testing this version, we can confirm that it mitigates iLeakage. 
 								</p>
 								<p>
-									<b>First, the Terminal app needs full disk access:</b>
+									You can download Safari Technology Preview from <a href="https://developer.apple.com/safari/resources/">Apple's Developer page.</a> We anticipate the changes within version 186 to propagate to stable versions of Safari for both macOS and iOS in the future.
 								</p>
-								<ol>
-									<li>Open the System Settings app, which is likely to be on your Dock. You can also
-										find the app in the Launchpad or Spotlight search.</li>
-									<li>Navigate to the Privacy & Security tab.</li>
-									<li>Click the menu item for Full Disk Access, and then the '+' button. You may be
-										prompted for your credentials here.</li>
-									<li>A Finder window will appear. Select Applications on the sidebar to the left, and
-										scroll near the bottom of the list to find a folder named Utilities.</li>
-									<li>Within the Utilities folder is the Terminal app. Click on it, followed by the
-										Open button in Finder.</li>
-								</ol>
-								<p>
-									<b>If you have updated to macOS Sonoma 14.0 or higher:</b>
-								</p>
-								<ol>
-									<li>Open the Terminal app. You can find this in the Launchpad, or through Spotlight
-										search.</li>
-									<li>Copy and paste the following command (in magenta), and press the Return key to
-										run it:
-										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 1</code>.
-									</li>
-								</ol>
-								<p>
-									<b>If you are on an earlier macOS version (macOS Ventura 13.0 to 13.6):</b>
-								</p>
-								<ol>
-									<li>We recommend enabling automatic updates and updating to macOS Sonoma. However,
-										if you wish to enable the mitigation on older macOS versions, follow these
-										steps:</li>
-									<li>First, download the version of Safari Technology Preview tht matches your macOS
-										version from Apple's <a
-											href="https://developer.apple.com/safari/resources/">download page.</a></li>
-									<li>Double-click the downloaded installer with the <code>.pkg</code> file extension,
-										and follow its directions until Safari Technology Preview is installed.</li>
-									<li>Open the Terminal app. You can find this in the Launchpad, or through Spotlight
-										search.</li>
-									<li>Copy and paste the following command (in magenta), and press the Return key to
-										run it:
-										<br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 1</code>.
-									</li>
-								</ol>
-								<p>
-									<b>This enables Safari's hidden debugging menu. Then, follow these steps:</b>
-								</p>
-								<ol>
-									<li>Open Safari (or Safari Technology Preview). On the menu bar, you should see a
-										new entry named <b>Debug</b>. <br><img class="img-fluid mitigation"
-											src="img/debug-menu.png" alt="Hidden debug menu"
-											style="max-height: 50px;" /></li>
-									<li>Click the Debug menu. This opens a long dropdown. Click on <b>WebKit Internal
-											Features</b>. <br><img class="img-fluid mitigation"
-											src="img/webkit-internal.png" alt="WebKit internal features"
-											style="max-height: 500px;" /></li>
-									<li>This opens another long dropdown to the side. Scroll down to the bottom of this
-										new dropdown, where you'll find an entry called <b>Swap Processes on Cross-Site
-											Window Open</b>. <br><img class="img-fluid mitigation" src="img/pson.png"
-											alt="Swap processes on cross-site window.open" style="max-height: 500px;" />
-									</li>
-									<li>Click this entry. A checkmark should appear to the left of it, like the
-										screenshot below. <br><img class="img-fluid mitigation"
-											src="img/pson-enabled.png" alt="Mitigation enabled"
-											style="max-height: 500px;" /></li>
-								</ol>
-								<p>
-									Afterwards, you're all set! To disable the mitigation, repeat steps 1-4 from above,
-									and the checkmark will disappear.
-									To disable the hidden debugging menu, open the Terminal app, copy and paste the
-									following command (depending on your OS version), and press the Return key to run.
-									The changes will apply the next time you start Safari (or Safari Technology
-									Preview).
-								</p>
-								<ul>
-									<li>For Safari (macOS Sonoma 14.0 and higher):
-										<br><code>defaults write com.apple.Safari IncludeInternalDebugMenu 0</code>
-									</li>
-									<li>For Safari Technology Preview (macOS Ventura 13.0 to 13.6):
-										<br><code>defaults write com.apple.SafariTechnologyPreview IncludeInternalDebugMenu 0</code>
-									</li>
-								</ul>
 							</div>
 						</div>
 					</div>
